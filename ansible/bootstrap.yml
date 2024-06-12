@@ -1,0 +1,5 @@
+- hosts: laptop
+  become: true
+
+  roles:
+#    - install_public_key
