@@ -1,0 +1,33 @@
+---
+#- name: Install required packages
+#  apt:
+#    name: "{{ packages }}"
+#  vars:
+#    packages:
+#    - mariadb-server
+
+- name: Install AppImageLauncher
+  include_tasks: app_image_launcher.yml
+
+# In fact the kdrive version is not even complete, there is some kind of a hash added
+# So do a lookup
+- name: Check if we should download kDrive
+  find: 
+    paths: "/home/nicolas/Applications/"
+    file_type: file
+    use_regex: yes
+    patterns: "kDrive.*AppImage"
+  register: kdrive_exists
+
+- name: Download kdrive AppImage
+  get_url:
+    owner: nicolas
+    url: "https://download.storage.infomaniak.com/drive/desktopclient/kDrive-{{kdrive_version}}-amd64.AppImage"
+    dest: "/home/nicolas/Téléchargements"
+  when: kdrive_exists.matched == 0
+
+- name: YOU have to use AppImageLauncher to "install" kDrive correctly
+  wait_for:
+    path: /home/nicolas/Applications
+  when: kdrive_exists.matched == False
+

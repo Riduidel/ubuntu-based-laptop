@@ -19,12 +19,12 @@ Dans le dossier `ubuntu-based-server`, lancer la commande **dans PowerShell**
 
 Entrer le mot de passe maître de Keepass
 
-    cd /ansible
-    ansible-playbook -i hosts bootstrap.yml --extra-vars="TODO"
+    ssh nicolas@[MAIS QUELLE EST L'ADRESSE IP ?]
+    ansible-playbook -i hosts bootstrap.yml --extra-vars="ansible_password=\"$ZORIN_PASSWORD\" ansible_become_password=\"$ZORIN_PASSWORD\""
 
 ## Tracabilité
 
-`raspbian-bootstrap` est une simplification de https://github.com/rhietala/raspberry-ansible/
+`ubuntu-based-laptop` est une simplification de https://github.com/rhietala/raspberry-ansible/
 
 `raspbian_bootstrap`-role is heavily based on
 [debian_boostrap](https://github.com/HanXHX/ansible-debian-bootstrap) by

@@ -9,21 +9,19 @@ $masterPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($bst
 # then free up the unmanged memory afterwards (thank to dimizuno)
 [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($bstr)
 
+$defaultZorinUser = "nicolas"
+if (!($zorinUser = Read-Host "Quel est l'utilisateur Linux? [$defaultZorinUser]")) { $zorinUser = $defaultZorinUser }
 # Now build the KPScript commands
-$readQnapPassword = "KPScript.exe `"$keepassDatabase`" -pw:`"$masterPassword`" -c:GetEntryString -Field:Password -ref-Title:`"QNAP`" -ref-UserName:admin"
-$readRaspPassword = "KPScript.exe `"$keepassDatabase`" -pw:`"$masterPassword`" -c:GetEntryString -Field:Password -ref-Title:`"Raspberry`" -ref-UserName:pi"
-$readNextCloudDBPassword = "KPScript.exe `"$keepassDatabase`" -pw:`"$masterPassword`" -c:GetEntryString -Field:Password -ref-Title:`"NextCloud MySQL DB`" -ref-UserName:nextcloud"
+$readZorinPassword = "KPScript.exe `"$keepassDatabase`" -pw:`"$masterPassword`" -c:GetEntryString -Field:Password -ref-Title:`"Portable Dell`" -ref-UserName:$zorinUser"
+$zorinPasswordResult = Invoke-Expression $readZorinPassword
+$zorinPassword = $zorinPasswordResult.Split([Environment]::NewLine) | Select -First 1
 
-$qnapResult = Invoke-Expression $readQnapPassword
-$raspResult = Invoke-Expression $readRaspPassword
-$nextCloudDBResult = Invoke-Expression $readNextCloudDBPassword
-
-$qnap = $qnapResult.Split([Environment]::NewLine) | Select -First 1
-$rasp = $raspResult.Split([Environment]::NewLine) | Select -First 1
-$nextCloudDB = $nextCloudDBResult.Split([Environment]::NewLine) | Select -First 1
+$readkDrivePassword = "KPScript.exe `"$keepassDatabase`" -pw:`"$masterPassword`" -c:GetEntryString -Field:Password -ref-Title:`"Infomaniak`" -ref-UserName:nicolas.delsaux@etik.com"
+$kDrivePasswordResult = Invoke-Expression $readkDrivePassword
+$kDrivePassword = $kDrivePasswordResult.Split([Environment]::NewLine) | Select -First 1
 
 $currentFolder = Get-Location
 # Finally start the docker image!
-$docker = "docker run --rm --name ansible -t -i -e QNAP_PASSWORD=`"$qnap`" -e RASPBIAN_PASSWORD=`"$rasp`" -e NEXTCLOUD_DB_PASSWORD=`"$nextCloudDB`" -v $currentFolder/ansible:/ansible willhallonline/ansible:2.13-ubuntu-22.04 /bin/bash"
+$docker = "docker run --rm --name ansible -t -i -e ZORIN_PASSWORD=`"$zorinPassword`" -e KDRIVE_PASSWORD=`"$kdrivePassword`" -v $currentFolder/ansible:/ansible willhallonline/ansible:2.13-ubuntu-22.04 /bin/bash"
 
 Invoke-Expression $docker

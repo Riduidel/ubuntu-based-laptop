@@ -1,0 +1,21 @@
+---
+- name: Install required packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - software-properties-common
+
+- name: Add specified repository into sources list
+  ansible.builtin.apt_repository:
+    repo: ppa:appimagelauncher-team/stable
+    state: present
+
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    update_cache: true
+
+- name: Install AppImageLauncher !
+  apt: 
+    name: appimagelauncher

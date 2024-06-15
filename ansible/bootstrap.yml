@@ -2,4 +2,7 @@
   become: true
 
   roles:
-#    - install_public_key
+    - kdrive
+#    - keepass
+#    - firefox
+#    - thunderbird
