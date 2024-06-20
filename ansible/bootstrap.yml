@@ -3,6 +3,7 @@
 
   roles:
     - kdrive
-#    - keepass
+    - keepass
 #    - firefox
-#    - thunderbird
+    - thunderbird
+    - dev

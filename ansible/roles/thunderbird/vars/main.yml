@@ -1,0 +1,45 @@
+thunderbird_addresses:
+  gmx_fr:
+    address: nicolas.delsaux@gmx.fr
+    imap:
+      server: imap.gmx.com
+      port: 993
+      socketType: 3
+    smtp:
+      name: nicolas.delsaux@gmx.fr
+      hostname: mail.gmx.com
+      username: nicolas.delsaux@gmx.fr
+      authMethod: 3
+      port: 465
+      try_ssl: 3
+  gmail_com:
+    address: nicolas.delsaux@gmail.com
+    imap:
+      name: nicolas.delsaux@gmail.com
+      authMethod: 10
+      hostname: imap.gmail.com
+      is_gmail: true
+      port: 993
+      socketType: 3
+      username: nicolas.delsaux@gmail.com
+    smtp:
+      hostname: smtp.gmail.com
+      username: nicolas.delsaux@gmail.com
+      authMethod: 3
+      port: 465
+      try_ssl: 3
+  free_fr:
+    address: nicolas.delsaux@free.fr.fr
+    imap:
+      name: nicolas.delsaux@free.fr
+      hostname: imap.free.fr
+      is_gmail: true
+      port: 993
+      socketType: 3
+      userName: nicolas.delsaux
+    smtp:
+      username: nicolas.delsaux@free.fr
+      hostname: smtp.free.fr
+      authMethod: 3
+      port: 587
+      try_ssl: 2

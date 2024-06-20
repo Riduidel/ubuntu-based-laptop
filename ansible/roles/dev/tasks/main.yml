@@ -1,0 +1,14 @@
+---
+- name: Install required packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - make
+
+- name: Install Java dependencies
+  include_tasks: java.yml
+
+
+- name: Install Codium
+  include_tasks: codium.yml

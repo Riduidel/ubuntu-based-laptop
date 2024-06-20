@@ -1,0 +1,14 @@
+---
+# See https://maniacgeek.net/linux-open-source/comment-installer-vscodium-sur-ubuntu-linux/
+- name : Add Codium apt key
+  apt_key:
+    url: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+
+- name : Add Codium apt repo
+  apt_repository:
+    repo: deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main
+    state: present
+
+- name: Install codium
+  apt:
+    name: codium
