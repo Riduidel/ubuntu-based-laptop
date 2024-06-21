@@ -1,4 +1,11 @@
 ---
+- name: Install required packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - bash-completion
+
 # See https://maniacgeek.net/linux-open-source/comment-installer-vscodium-sur-ubuntu-linux/
 - name : Add Codium apt key
   apt_key:
