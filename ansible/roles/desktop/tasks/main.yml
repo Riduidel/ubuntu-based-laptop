@@ -1,0 +1,6 @@
+---
+- name: Install Chromium
+  include_tasks: chromium.yml
+
+- name: Install Mission Center
+  include_tasks: mission_center.yml

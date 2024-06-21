@@ -1,0 +1,10 @@
+---
+# See https://ubuntuhandbook.org/index.php/2021/05/install-chromium-browser-ppa-ubuntu-20-04/
+- name: Add Chromium PPA
+  apt_repository:
+    repo: ppa:xtradeb/apps
+    state: present
+
+- name: Install Chromium
+  apt:
+    name: chromium
