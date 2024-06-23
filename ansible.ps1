@@ -1,4 +1,4 @@
-$defaultKeepass = "$env:USERPROFILE\Cozy Drive\personnel.kdbx"
+$defaultKeepass = "$env:USERPROFILE\kDrive\personnel.kdbx"
 if (!($keepassDatabase = Read-Host "Quelle base Keepass utiliser? [$defaultKeepass]")) { $keepassDatabase = $defaultKeepass }
 
 $securedMasterPassword = Read-Host -AsSecureString "Quel est le mot de passe?"
