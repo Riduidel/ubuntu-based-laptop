@@ -22,6 +22,18 @@ Entrer le mot de passe maître de Keepass
     ssh nicolas@[MAIS QUELLE EST L'ADRESSE IP ?]
     ansible-playbook -i hosts bootstrap.yml --extra-vars="ansible_password=\"$ZORIN_PASSWORD\" ansible_become_password=\"$ZORIN_PASSWORD\""
 
+## Lancer avec Linux
+
+Il faut d'abord installer Docker.
+Dans le dossier `ubuntu-based-server`, lancer la commande **dans un terminal externe** (parce que VSCode sandboxe les appels à sudo)
+
+    ansible.sh
+
+Entrer le mot de passe maître de Keepass
+
+    ssh nicolas@[MAIS QUELLE EST L'ADRESSE IP ?]
+    ansible-playbook -i hosts bootstrap.yml --ask-vault-pass --extra-vars="ansible_password=\"$ZORIN_PASSWORD\" ansible_become_password=\"$ZORIN_PASSWORD\""
+
 ## Tracabilité
 
 `ubuntu-based-laptop` est une simplification de https://github.com/rhietala/raspberry-ansible/
