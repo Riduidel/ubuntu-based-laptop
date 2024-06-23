@@ -20,13 +20,13 @@
     - docker-buildx-plugin
     - docker-compose-plugin
 
-- name: Run the useful docker images
-  become: yes
-  shell: "{{image_cli}}"
-  args:
-      executable: /bin/bash
-  vars:
-    image_cli:
-      - docker run -d --name kroki --restart unless-stopped -p29000:8000 yuzutech/kroki
-      - docker run -d --name watchtower --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower
+#- name: Run the useful docker images
+#  become: yes
+#  shell: "{{image_cli}}"
+#  args:
+#      executable: /bin/bash
+#  vars:
+#    image_cli:
+#      - docker run -d --name kroki --restart unless-stopped -p29000:8000 yuzutech/kroki
+#      - docker run -d --name watchtower --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower
 #      - docker run -d -p 13000:8080 --add-host=host.docker.internal:host-gateway -v /home/nicolas/.open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main

@@ -1,0 +1,9 @@
+---
+- name: Add Stacer PPA
+  apt_repository:
+    repo: ppa:oguzhaninan/stacer
+    state: present
+
+- name: Install Stacer
+  apt:
+    name: stacer
