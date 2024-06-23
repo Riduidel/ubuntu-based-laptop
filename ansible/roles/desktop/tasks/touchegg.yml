@@ -1,0 +1,12 @@
+---
+- name: Add touchegg PPA
+  apt_repository:
+    name: ppa:touchegg/stable
+    state: present
+
+- name: Install touchegg
+  apt:
+    name: touchegg
+    state: present
+
+# And now install the x11 gestures extension (but I don't yet know how to install it with Ansilbe)
