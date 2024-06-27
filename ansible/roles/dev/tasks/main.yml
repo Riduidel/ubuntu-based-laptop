@@ -22,3 +22,6 @@
 
 - name: Install Docker containers and other stuff
   include_tasks: docker.yml
+
+- name: Go to work fast!
+  include_tasks: work.yml

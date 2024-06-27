@@ -3,3 +3,5 @@ groovy_version: 4.0.21
 java_version: 21.0.3-tem
 jbang_version: 0.116.0
 maven_version: 3.9.8
+git_open_source: /home/nicolas/Documents/open-source
+git_company: /home/nicolas/Documents/Zenika

@@ -1,0 +1,7 @@
+---
+collections:
+- name: community.general
+
+roles:
+- name: customize-gnome
+  src: PeterMosmans.customize-gnome
