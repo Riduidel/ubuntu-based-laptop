@@ -19,7 +19,8 @@ Dans le dossier `ubuntu-based-server`, lancer la commande **dans PowerShell**
 
 Entrer le mot de passe maître de Keepass
 
-    ssh nicolas@[MAIS QUELLE EST L'ADRESSE IP ?]
+    ssh nicolas@192.168.0.14
+    ansible-galaxy install -r requirements.yml
     ansible-playbook -i hosts bootstrap.yml --extra-vars="ansible_password=\"$ZORIN_PASSWORD\" ansible_become_password=\"$ZORIN_PASSWORD\""
 
 ## Lancer avec Linux
