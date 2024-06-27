@@ -1,7 +1,7 @@
 ---
 - name: Add touchegg PPA
   apt_repository:
-    name: ppa:touchegg/stable
+    repo: ppa:touchegg/stable
     state: present
 
 - name: Install touchegg
