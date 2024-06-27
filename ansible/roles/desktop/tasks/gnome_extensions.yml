@@ -1,0 +1,16 @@
+---
+- name: Install Gnome extensions
+  include_role:
+    name: "ansible-role-gnome-extensions"
+  vars:
+    gnome_user: nicolas
+    gnome_extensions:
+      - url: https://extensions.gnome.org/extension/7065/tiling-shell/
+        state: present
+        installed: True
+      - url: https://extensions.gnome.org/extension/4470/media-controls/
+        state: present
+        installed: True
+      - url: https://extensions.gnome.org//extension/4245/gesture-improvements/
+        state: present
+        installed: True

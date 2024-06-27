@@ -5,3 +5,7 @@ collections:
 roles:
 - name: customize-gnome
   src: PeterMosmans.customize-gnome
+- name: ansible-role-gnome-extensions
+  src: https://github.com/ctorgalson/ansible-role-gnome-extensions
+  scm: git
+  version: cb3b3f6760c31bde93836e8de59d7939e2ae8d0b
