@@ -7,3 +7,12 @@
 - name: Install Keepass
   apt:
     name: keepassxc
+
+# See https://keepassxc.org/docs/KeePassXC_UserGuide#_auto_type
+- name: Ensure autocomplete will work in Wayland
+  lineinfile:
+    path: /home/nicolas/.profile
+    search_string: "QT_QPA_PLATFORM=xcb"
+    line: "export QT_QPA_PLATFORM=xcb"
+    owner: nicolas
+    group: nicolas
