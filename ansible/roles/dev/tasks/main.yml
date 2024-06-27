@@ -13,6 +13,9 @@
 - name: Install Java dependencies
   include_tasks: java.yml
 
+- name: Install Eclipse
+  flatpak:
+    name: org.eclipse.Java
 
 - name: Install Codium
   include_tasks: codium.yml
