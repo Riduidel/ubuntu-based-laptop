@@ -8,6 +8,9 @@
     - gnome-shell-extension-manager
     - flameshot
     - timeshift
+- name: Install Droidcam
+  include_tasks: droidcam.yml
+
 
 - name: Install Chromium
   include_tasks: chromium.yml

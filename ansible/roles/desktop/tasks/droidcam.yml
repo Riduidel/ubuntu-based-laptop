@@ -1,0 +1,46 @@
+---
+# Doesn't work due to PPA not having Jammy configured in (see https://github.com/paolorotolo/droidcam/issues/16)
+# From https://github.com/PaoloRotolo/droidcam
+# - name: Add Droidcam PPA
+#   apt_repository:
+#     repo: ppa:paolorotolo/droidcam
+#     state: present
+
+# - name: Install Droidcam
+#   apt:
+#     name: droidcam
+
+- name: Install dev packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - gcc-12
+    - make
+    - linux-headers-generic
+
+
+# So NATIVE install !
+- name: Create receiving folder
+  file:
+    path: "{{droidcam_temp_folder}}"
+    state: directory
+
+- name: Download Droidcam source
+  unarchive:
+    src: "{{droidcam_source}}"
+    dest: "{{droidcam_temp_folder}}"
+    remote_src: yes
+    # No need to download it twice
+    creates: "{{droidcam_temp_folder}}/install-client"
+
+- name: Install specific droidcam webcam driver
+  command: "./install-video"
+  args:
+    chdir: "{{droidcam_temp_folder}}"
+
+- name: Now install droidcam
+  command: "./install-client"
+  args:
+    chdir: "{{droidcam_temp_folder}}"
+    creates: /usr/local/bin/droidcam
