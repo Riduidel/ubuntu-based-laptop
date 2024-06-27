@@ -24,5 +24,6 @@
 #- name: Install Mission Center
 #  include_tasks: mission_center.yml
 
-- name: Install Touchegg
-  include_tasks: touchegg.yml
+- name: Install Lutris
+  include_tasks: lutris.yml
+
