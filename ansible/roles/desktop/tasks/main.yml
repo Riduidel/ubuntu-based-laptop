@@ -8,6 +8,14 @@
     - gnome-shell-extension-manager
     - flameshot
     - timeshift
+    - filezilla
+    - copyq
+    - dirmngr
+    - gnupg
+    - apt-transport-https
+    - ca-certificates
+
+- name: Install Touchegg
 - name: Install Droidcam
   include_tasks: droidcam.yml
 
