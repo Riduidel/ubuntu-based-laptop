@@ -38,12 +38,13 @@
   command: "./install-video"
   args:
     chdir: "{{droidcam_temp_folder}}"
+  ignore_errors: true
 
 - name: Force webcam configuration to something decent
-  file:
+  lineinfile:
     path: /etc/modprobe.d/droidcam.conf
-    content: |-
-      options v4l2loopback_dc width=1280 height=720
+    search_string: v4l2loopback_dc
+    line: options v4l2loopback_dc width=1280 height=720
 
 - name: Now install droidcam
   command: "./install-client"
