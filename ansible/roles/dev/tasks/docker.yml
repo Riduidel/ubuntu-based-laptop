@@ -20,6 +20,20 @@
     - docker-buildx-plugin
     - docker-compose-plugin
 
+- name: Ensure group "docker" exists with correct gid
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: "Adding users"  
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: yes
+  loop:
+    - nicolas
+    - docker
+
 #- name: Run the useful docker images
 #  become: yes
 #  shell: "{{image_cli}}"
