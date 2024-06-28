@@ -5,10 +5,12 @@
   vars:
     packages:
     - make
-    - git
     - htop
     - bat
     - fzf
+
+- name: Install and configure git
+  include_tasks: git.yml
 
 - name: Install Java dependencies
   include_tasks: java.yml
