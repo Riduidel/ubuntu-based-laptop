@@ -24,4 +24,4 @@ currentFolder=${PWD}
 # Finally start the docker image!
 docker="docker run --rm --name ansible -t -i -e SESSION_PASSWORD=\"$sessionPassword\" -e KDRIVE_PASSWORD=\"$kdrivePassword\" -v $currentFolder/ansible:/ansible:ro willhallonline/ansible:2.16.4-bookworm-slim /bin/bash"
 
-#sudo bash -c "$docker"
+sudo bash -c "$docker"
