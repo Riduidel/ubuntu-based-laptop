@@ -6,10 +6,11 @@
       executable: /bin/bash
 
 - name: Add SDK Man to bash_profile
-  lineinfile: path={{ home }}/.bash_profile
-    line={{ item }}
-    state=present
-    create=yes
+  lineinfile: 
+    path: "{{ home }}/.bash_profile"
+    line: "{{ item }}"
+    state: "present"
+    create: "yes"
   with_items:
     - 'source "$HOME/.sdkman/bin/sdkman-init.sh"'
 

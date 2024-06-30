@@ -1,16 +1,27 @@
 ---
-- name: Install Gnome extensions
-  include_role:
-    name: "ansible-role-gnome-extensions"
+- name: Install Pano requirements
+  apt:
+    name: "{{ packages }}"
   vars:
-    gnome_user: "{{ansible_user}}"
-    gnome_extensions:
-      - url: https://extensions.gnome.org/extension/7065/tiling-shell/
-        state: present
-        installed: True
-      - url: https://extensions.gnome.org/extension/4470/media-controls/
-        state: present
-        installed: True
-      - url: https://extensions.gnome.org//extension/4245/gesture-improvements/
-        state: present
-        installed: True
+    packages:
+    - gir1.2-gda-5.0
+    - gir1.2-gsound-1.0
+
+- name: Install gnome-extensions command line
+  become: yes
+  become_user: "{{ansible_user}}"
+  command: pipx install gnome-extensions-cli
+
+- name: Install Gnome extensions
+  become: yes
+  become_user: "{{ansible_user}}"
+  command: "gnome-extensions-cli install {{item}}"
+  args:
+    chdir: "{{home_folder}}/.local/bin"
+  with_items:
+    - 7065 #tiling-shell/
+    - 4470 #media-controls/
+    - 4245 #gesture-improvements/
+    - 5278 #pano/
+    - 1160 #dash-to-panel/
+    - 3628 #arcmenu/

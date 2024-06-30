@@ -16,6 +16,8 @@
     - ca-certificates
     - flatpak
     - gnome-software-plugin-flatpak
+    - python3-pip
+    - pipx
 
 - name: Add the flathub flatpak repository remote to the user installation
   community.general.flatpak_remote:
@@ -33,9 +35,6 @@
 - name: Install Chromium
   include_tasks: chromium.yml
 
-- name: Install Pano
-  include_tasks: pano.yml
-
 #- name: Install Stacer
 #  include_tasks: stacer.yml
 
@@ -46,5 +45,5 @@
 - name: Install Lutris
   include_tasks: lutris.yml
 
-#- name: Install gnome extensions
-#  include_tasks: gnome_extensions.yml
+# - name: Install gnome extensions
+#   include_tasks: gnome_extensions.yml

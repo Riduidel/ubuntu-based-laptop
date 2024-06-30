@@ -7,9 +7,6 @@ collections:
 
 roles:
 - src: nickjj.docker
-- name: customize-gnome
-  src: PeterMosmans.customize-gnome
-- name: ansible-role-gnome-extensions
-  src: https://github.com/piorkov/ansible-role-gnome-extensions
+- src: https://github.com/luizgavalda/gnome_extensions
   scm: git
-  version: 7182feee2e84adbc86dbcaa1fff882c8f0c69205
+  version: 8b5fca0cec194e14d21a4c114290d643bd8c837e

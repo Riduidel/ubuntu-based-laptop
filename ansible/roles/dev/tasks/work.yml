@@ -1,9 +1,13 @@
 ---
 - name: Clone open-source repositories
+  become: yes
+  become_user: "{{ansible_user}}"
   git:
     repo: git@github.com:Riduidel/{{my_repo_name}}.git
     dest: "{{git_open_source}}/{{my_repo_name}}"
   vars:
     my_repo_name:
       - aadarchi
+      - aadarchi-technology-detector
+      - conferences
       - ubuntu-based-laptop
