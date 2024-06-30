@@ -5,12 +5,23 @@
   vars:
     packages:
     - software-properties-common
+    - libfuse2
 
-- name: Add specified repository into sources list
-  ansible.builtin.apt_repository:
-    repo: ppa:appimagelauncher-team/stable
-    state: present
+# The initial install process no more work with latest Ubuntu release
+# So I had to go back to GitHub release (see https://stackoverflow.com/q/50966777/15619)
+# Since there is no sign a new version will come, so directly download the given version
+- name: Check if destination file exists
+  stat: 
+    path: "{{download_folder}}/AppImageLauncher.deb"
+  register: appimage_launcher_exist
 
-- name: Install AppImageLauncher !
-  apt: 
-    name: appimagelauncher
+- name: Download AppImageLauncher
+  get_url:
+    url : "https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher_2.2.0-gha111.d9d4c73+bionic_amd64.deb"
+    dest: "{{download_folder}}/AppImageLauncher.deb"
+  when: appimage_launcher_exist.stat.exists == False
+
+- name: Install the .deb
+  apt:
+    deb: "{{download_folder}}/AppImageLauncher.deb"
+  become: True
