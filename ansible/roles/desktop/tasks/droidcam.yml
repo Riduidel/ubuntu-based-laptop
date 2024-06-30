@@ -34,6 +34,12 @@
     # No need to download it twice
     creates: "{{droidcam_temp_folder}}/install-client"
 
+- name: Now install droidcam
+  command: "./install-client"
+  args:
+    chdir: "{{droidcam_temp_folder}}"
+    creates: /usr/local/bin/droidcam
+
 - name: Install specific droidcam webcam driver
   command: "./install-video"
   args:
@@ -44,10 +50,3 @@
   copy:
     dest: /etc/modprobe.d/droidcam.conf
     content: options v4l2loopback_dc width=1280 height=720
-
-- name: Now install droidcam
-  command: "./install-client"
-  args:
-    chdir: "{{droidcam_temp_folder}}"
-    creates: /usr/local/bin/droidcam
-
