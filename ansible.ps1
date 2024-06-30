@@ -9,10 +9,8 @@ $masterPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($bst
 # then free up the unmanged memory afterwards (thank to dimizuno)
 [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($bstr)
 
-$defaultZorinUser = "nicolas"
-if (!($zorinUser = Read-Host "Quel est l'utilisateur Linux? [$defaultZorinUser]")) { $zorinUser = $defaultZorinUser }
 # Now build the KPScript commands
-$readZorinPassword = "KPScript.exe `"$keepassDatabase`" -pw:`"$masterPassword`" -c:GetEntryString -Field:Password -ref-Title:`"Portable Dell`" -ref-UserName:$zorinUser"
+$readZorinPassword = "KPScript.exe `"$keepassDatabase`" -pw:`"$masterPassword`" -c:GetEntryString -Field:Password -ref-Title:`"Portable Dell`""
 $zorinPasswordResult = Invoke-Expression $readZorinPassword
 $zorinPassword = $zorinPasswordResult.Split([Environment]::NewLine) | Select -First 1
 
@@ -22,6 +20,6 @@ $kDrivePassword = $kDrivePasswordResult.Split([Environment]::NewLine) | Select -
 
 $currentFolder = Get-Location
 # Finally start the docker image!
-$docker = "docker run --rm --name ansible -t -i -e ZORIN_PASSWORD=`"$zorinPassword`" -e KDRIVE_PASSWORD=`"$kdrivePassword`" -v $currentFolder/ansible:/ansible willhallonline/ansible:2.13-ubuntu-22.04 /bin/bash"
+$docker = "docker run --rm --name ansible -t -i -e ZORIN_PASSWORD=`"$zorinPassword`" -e KDRIVE_PASSWORD=`"$kdrivePassword`" -v $currentFolder/ansible:/ansible:ro willhallonline/ansible:2.16.4-bookworm-slim /bin/bash"
 
 Invoke-Expression $docker

@@ -13,7 +13,7 @@
 # So do a lookup
 - name: Check if we should download kDrive
   find: 
-    paths: "/home/nicolas/Applications/"
+    paths: "{{home_folder}}/Applications/"
     file_type: file
     use_regex: yes
     patterns: "kDrive.*AppImage"
@@ -21,13 +21,13 @@
 
 - name: Download kdrive AppImage
   get_url:
-    owner: nicolas
+    owner: "{{ansible_user}}"
     url: "https://download.storage.infomaniak.com/drive/desktopclient/kDrive-{{kdrive_version}}-amd64.AppImage"
-    dest: "/home/nicolas/Téléchargements"
+    dest: "{{download_folder}}"
   when: kdrive_exists.matched == 0
 
 - name: YOU have to use AppImageLauncher to "install" kDrive correctly
   wait_for:
-    path: /home/nicolas/Applications
+    path: "{{home_folder}}/Applications"
   when: kdrive_exists.matched == False
 

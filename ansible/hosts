@@ -1,2 +1,2 @@
 [laptop]
-dell ansible_host=192.168.0.14 ansible_user=nicolas ansible_python_interpreter=/usr/bin/python3
+dell ansible_host=192.168.0.14 ansible_user="nicolas-delsaux" ansible_python_interpreter=/usr/bin/python3

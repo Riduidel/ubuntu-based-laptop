@@ -31,7 +31,7 @@
     groups: docker
     append: yes
   loop:
-    - nicolas
+    - "{{ansible_user}}"
     - docker
 
 #- name: Run the useful docker images

@@ -3,7 +3,7 @@
   include_role:
     name: "ansible-role-gnome-extensions"
   vars:
-    gnome_user: nicolas
+    gnome_user: "{{ansible_user}}"
     gnome_extensions:
       - url: https://extensions.gnome.org/extension/7065/tiling-shell/
         state: present

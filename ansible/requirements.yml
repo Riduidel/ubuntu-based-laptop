@@ -1,12 +1,15 @@
 ---
 collections:
 - name: community.general
+- name: https://github.com/QueraTeam/ansible-github
+  type: git
+  version: df5a6c5d9cdad1493469d4df2dba5750ad122b30
 
 roles:
 - src: nickjj.docker
 - name: customize-gnome
   src: PeterMosmans.customize-gnome
 - name: ansible-role-gnome-extensions
-  src: https://github.com/ctorgalson/ansible-role-gnome-extensions
+  src: https://github.com/piorkov/ansible-role-gnome-extensions
   scm: git
-  version: cb3b3f6760c31bde93836e8de59d7939e2ae8d0b
+  version: 7182feee2e84adbc86dbcaa1fff882c8f0c69205

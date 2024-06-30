@@ -10,7 +10,7 @@ stty echo
 printf '\n'
 
 
-defaultZorinUser="nicolas"
+defaultZorinUser="nicolas-delsaux"
 read -p  "Quel est l'utilisateur Linux? [$defaultZorinUser]" zorinUser
 zorinUser={zorinUser:-$defaultKeepass}
 
@@ -22,6 +22,6 @@ kdrivePassword=$(echo $password | keepassxc-cli show /home/nicolas/kDrive/person
 
 currentFolder=${PWD}
 # Finally start the docker image!
-docker="docker run --rm --name ansible -t -i -e ZORIN_PASSWORD=\"$zorinPassword\" -e KDRIVE_PASSWORD=\"$kdrivePassword\" -v $currentFolder/ansible:/ansible willhallonline/ansible:2.13-ubuntu-22.04 /bin/bash"
+docker="docker run --rm --name ansible -t -i -e ZORIN_PASSWORD=\"$zorinPassword\" -e KDRIVE_PASSWORD=\"$kdrivePassword\" -v $currentFolder/ansible:/ansible:ro willhallonline/ansible:2.16.4-bookworm-slim /bin/bash"
 
 sudo bash -c "$docker"

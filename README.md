@@ -7,7 +7,7 @@ Mon script Ansible pour initialiser mon portable basé sur Ubuntu (actuellement 
 Le raspberry doit avoir
 
 * Une version d'une dérivée d'Ubuntu récente
-* Le compte `nicolas` configuré
+* Le compte `nicolas-delsaux` configuré
 * Le serveur SSH configuré
 
 ## Lancer avec Windows
@@ -19,9 +19,9 @@ Dans le dossier `ubuntu-based-server`, lancer la commande **dans PowerShell**
 
 Entrer le mot de passe maître de Keepass
 
-    ssh nicolas@192.168.0.14
+    ssh nicolas-delsaux@192.168.0.14
     ansible-galaxy install -r requirements.yml
-    ansible-playbook -i hosts bootstrap.yml --extra-vars="ansible_password=\"$ZORIN_PASSWORD\" ansible_become_password=\"$ZORIN_PASSWORD\""
+    ansible-playbook -i hosts bootstrap.yml --extra-vars="ansible_password=\"$ZORIN_PASSWORD\" ansible_become_password=\"$ZORIN_PASSWORD\" ansible_ssh_password=\"$ZORIN_PASSWORD\""
 
 ## Lancer avec Linux
 

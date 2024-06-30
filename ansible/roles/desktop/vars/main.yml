@@ -1,4 +1,4 @@
 droidcam_version: 2.1.3
 droidcam_source: "https://files.dev47apps.net/linux/droidcam_{{droidcam_version}}.zip"
-droidcam_parent_folder: /home/nicolas/Téléchargements
+droidcam_parent_folder: "{{download_folder}}"
 droidcam_temp_folder: "{{droidcam_parent_folder}}/droidcam_install_{{droidcam_version}}"
