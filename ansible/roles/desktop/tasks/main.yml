@@ -14,6 +14,14 @@
     - gnupg
     - apt-transport-https
     - ca-certificates
+    - flatpak
+    - gnome-software-plugin-flatpak
+
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
 - name: Install Touchegg
   include_tasks: touchegg.yml
@@ -25,15 +33,18 @@
 - name: Install Chromium
   include_tasks: chromium.yml
 
-#- name: Install Pano
-#  include_tasks: pano.yml
+- name: Install Pano
+  include_tasks: pano.yml
 
 #- name: Install Stacer
 #  include_tasks: stacer.yml
 
-#- name: Install Mission Center
-#  include_tasks: mission_center.yml
+- name: Install Mission Center
+  flatpak:
+    name: io.missioncenter.MissionCenter
 
 - name: Install Lutris
   include_tasks: lutris.yml
 
+#- name: Install gnome extensions
+#  include_tasks: gnome_extensions.yml
