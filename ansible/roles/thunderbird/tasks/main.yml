@@ -6,7 +6,6 @@
     packages:
     - thunderbird
     - thunderbird-locale-fr
-    - webext-tbsync
 
 # - name: Copy autoexec file in the right location
 #   template:
