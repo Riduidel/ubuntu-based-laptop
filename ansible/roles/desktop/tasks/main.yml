@@ -31,6 +31,9 @@
 - name: Install Droidcam
   include_tasks: droidcam.yml
 
+- name: Install smile
+  flatpak:
+    name: it.mijorus.smile
 
 - name: Install Chromium
   include_tasks: chromium.yml

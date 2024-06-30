@@ -7,12 +7,16 @@
     - git
 
 - name: Configure git username globally
+  become: yes
+  become_user: "{{ansible_user}}"
   git_config:
     name: user.name
     scope: global
     value: 'Nicolas Delsaux'
 
 - name: Configure git email globally
+  become: yes
+  become_user: "{{ansible_user}}"
   git_config:
     name: user.email
     scope: global
