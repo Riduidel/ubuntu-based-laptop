@@ -21,7 +21,7 @@ Entrer le mot de passe maître de Keepass
 
     ssh nicolas-delsaux@192.168.0.14
     ansible-galaxy install -r requirements.yml
-    ansible-playbook -i hosts bootstrap.yml --extra-vars="ansible_password=\"$ZORIN_PASSWORD\" ansible_become_password=\"$ZORIN_PASSWORD\" ansible_ssh_password=\"$ZORIN_PASSWORD\""
+    ansible-playbook -i hosts bootstrap.yml --extra-vars="ansible_password=\"$SESSION_PASSWORD\" ansible_become_password=\"$SESSION_PASSWORD\" ansible_ssh_password=\"$SESSION_PASSWORD\""
 
 ## Lancer avec Linux
 
@@ -34,7 +34,7 @@ Entrer le mot de passe maître de Keepass
 
     ssh nicolas-delsaux@192.168.0.14
     ansible-galaxy install -r requirements.yml
-    ansible-playbook -i hosts bootstrap.yml --ask-vault-pass --extra-vars="ansible_password=\"$ZORIN_PASSWORD\" ansible_become_password=\"$ZORIN_PASSWORD\" ansible_ssh_password=\"$ZORIN_PASSWORD\""
+    ansible-playbook -i hosts bootstrap.yml --ask-vault-pass --extra-vars="ansible_password=\"$SESSION_PASSWORD\" ansible_become_password=\"$SESSION_PASSWORD\" ansible_ssh_password=\"$SESSION_PASSWORD\""
 
 ## Tracabilité
 
