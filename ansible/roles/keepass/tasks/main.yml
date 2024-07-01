@@ -4,15 +4,36 @@
     repo: ppa:phoerious/keepassxc
     state: present
 
+- name: Pin repo to ensure things go nice
+  copy:
+    dest: /etc/apt/preferences.d/phoerious-apt-repo
+    content: |
+      Package: keepassxc
+      Pin: release l=KeePassXC
+      Pin-Priority: 520
+
 - name: Install Keepass
   apt:
     name: keepassxc
+
+# From https://pled.fr/?p=20783
+- name: Install nice decoration for KeepassXC
+  apt:
+    name: qgnomeplatform-qt5
+
+- name: Set the required env variable
+  lineinfile:
+    path: "{{home_folder}}/.profile"
+    search_string: "QT_QPA_PLATFORMTHEME"
+    line: "export QT_QPA_PLATFORMTHEME='gnome'"
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
 
 # See https://keepassxc.org/docs/KeePassXC_UserGuide#_auto_type
 - name: Ensure autocomplete will work in Wayland
   lineinfile:
     path: "{{home_folder}}/.profile"
-    search_string: "QT_QPA_PLATFORM=xcb"
+    search_string: "QT_QPA_PLATFORM="
     line: "export QT_QPA_PLATFORM=xcb"
     owner: "{{ansible_user}}"
     group: "{{ansible_user}}"
