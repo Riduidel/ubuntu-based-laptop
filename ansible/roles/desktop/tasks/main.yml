@@ -9,7 +9,6 @@
     - flameshot
     - timeshift
     - filezilla
-    - copyq
     - dirmngr
     - gnupg
     - apt-transport-https
@@ -19,11 +18,8 @@
     - python3-pip
     - pipx
 
-- name: Add the flathub flatpak repository remote to the user installation
-  community.general.flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+- name: Install flatpak
+  include_tasks: flatpak.yml
 
 - name: Install Touchegg
   include_tasks: touchegg.yml
@@ -31,22 +27,16 @@
 - name: Install Droidcam
   include_tasks: droidcam.yml
 
-- name: Install smile
-  flatpak:
-    name: it.mijorus.smile
-
 - name: Install Chromium
   include_tasks: chromium.yml
 
 #- name: Install Stacer
 #  include_tasks: stacer.yml
 
-- name: Install Mission Center
-  flatpak:
-    name: io.missioncenter.MissionCenter
-
 - name: Install Lutris
   include_tasks: lutris.yml
 
 # - name: Install gnome extensions
 #   include_tasks: gnome_extensions.yml
+
+# TODO Automate dynamic wallpapers install (but it never worked https://github.com/saint-13/Linux_Dynamic_Wallpapers)
