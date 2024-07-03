@@ -17,6 +17,9 @@
     - gnome-software-plugin-flatpak
     - python3-pip
     - pipx
+    # THis clupboard manager seems to work quite well with Wayland
+    - diodon
+    - redshift-gtk
 
 - name: Install flatpak
   include_tasks: flatpak.yml
