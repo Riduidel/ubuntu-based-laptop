@@ -1,21 +1,28 @@
 ---
 - name: Add Chromium pin
   copy:
-    dest: /etc/apt/preferences.d/firefox-pin
+    dest: /etc/apt/preferences.d/chromium-pin-deb
     # We prefer all packgaes from mozilla, hopping they do good
     content: |
       Package: chromium*
-      Pin: release l=xtradebs
+      Pin: release o=LP-PPA-xtradeb-apps
       Pin-Priority: 1000
+  register: chromium_pin
 
 - name: Add Chromium snap installation preventer
   copy:
-    dest: /etc/apt/preferences.d/block-chromium-snap
+    dest: /etc/apt/preferences.d/chromium-block-snap
     # We prefer all packgaes from mozilla, hopping they do good
     content: |
       Package: chromium*
       Pin: release o=Ubuntu
-      Pin-Priority: -1
+      Pin-Priority: 1
+  register: chromium_block
+
+- name: If configuration changed, run apt update
+  apt:
+    update_cache: true
+  when: chromium_pin.changed or chromium_block.changed
 
 # See https://ubuntuhandbook.org/index.php/2021/05/install-chromium-browser-ppa-ubuntu-20-04/
 - name: Add Chromium PPA
@@ -23,7 +30,7 @@
     repo: ppa:xtradeb/apps
     state: present
 
-- name: Remove Chromium span
+- name: Remove Chromium snap
   community.general.snap:
     name: chromium
     state: absent
