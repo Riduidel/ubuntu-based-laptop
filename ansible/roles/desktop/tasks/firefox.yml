@@ -1,0 +1,40 @@
+---
+- name: Add Firefox repository signature
+# See https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04
+  apt_key:
+    url: https://packages.mozilla.org/apt/repo-signing-key.gpg 
+
+- name : Add firefox apt repo
+  apt_repository:
+    repo: deb https://packages.mozilla.org/apt mozilla main
+    state: present
+
+- name: Add Firefox pin
+  copy:
+    dest: /etc/apt/preferences.d/firefox-pin
+    # We prefer all packgaes from mozilla, hopping they do good
+    content: |
+      Package: firefox*
+      Pin: origin packages.mozilla.org
+      Pin-Priority: 1000
+
+- name: Add firefox snap installation preventer
+  copy:
+    dest: /etc/apt/preferences.d/block-firefox-snap
+    # We prefer all packgaes from mozilla, hopping they do good
+    content: |
+      Package: firefox*
+      Pin: release o=Ubuntu
+      Pin-Priority: -1
+
+- name: Remove Firefox snap
+  community.general.snap:
+    name: firefox
+    state: absent
+
+- name: Install Firefox from .deb
+  apt:
+    name: "{{item}}"
+  with_items: 
+    - firefox
+    - firefox-l10n-fr

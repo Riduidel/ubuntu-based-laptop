@@ -25,6 +25,9 @@
 - name: Install flatpak
   include_tasks: flatpak.yml
 
+- name: Install Firefox .deb
+  include_tasks: firefox.yml
+
 - name: Install Touchegg
   include_tasks: touchegg.yml
 

@@ -6,11 +6,11 @@
 
 - name: Pin repo to ensure things go nice
   copy:
-    dest: /etc/apt/preferences.d/phoerious-apt-repo
+    dest: /etc/apt/preferences.d/keepassxc-pin
     content: |
       Package: keepassxc
       Pin: release l=KeePassXC
-      Pin-Priority: 520
+      Pin-Priority: 1000
 
 - name: Install Keepass
   apt:
