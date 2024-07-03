@@ -1,0 +1,44 @@
+---
+- name : Add Mozilla team ppa
+  apt_repository:
+    repo: ppa:mozillateam/ppa
+    state: present
+
+- name: Add Thunderbird pin
+  copy:
+    dest: /etc/apt/preferences.d/thunderbird-pin-deb
+    # We prefer all packgaes from mozilla, hopping they do good
+    content: |
+      Package: thunderbird*
+      Pin: release o=LP-PPA-mozillateam
+      Pin-Priority: 1000
+  register: thunderbird_pin
+
+- name: Add thunderbird snap installation preventer
+  copy:
+    dest: /etc/apt/preferences.d/thunderbird-block-snap
+    # We prefer all packgaes from mozilla, hopping they do good
+    content: |
+      Package: thunderbird*
+      Pin: release o=Ubuntu
+      Pin-Priority: -1
+  register: thunderbird_block
+
+- name: Update apt cache if configuration changed
+  apt:
+    update_cache: true
+  when: thunderbird_pin.changed or thunderbird_block.changed
+
+- name: Remove Thunderbird snap
+  community.general.snap:
+    name: thunderbird
+    state: absent
+
+- name: Install Thunderbird required packages
+  apt:
+    name: "{{ packages }}"
+    force: yes
+  vars:
+    packages:
+    - thunderbird
+    - thunderbird-locale-fr

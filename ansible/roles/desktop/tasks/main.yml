@@ -6,7 +6,6 @@
     packages:
     - gnome-tweaks
     - gnome-shell-extension-manager
-    - flameshot
     - timeshift
     - filezilla
     - dirmngr
@@ -27,6 +26,9 @@
 
 - name: Install Firefox .deb
   include_tasks: firefox.yml
+
+- name: Install Thunderbird .deb
+  include_tasks: thunderbird.yml
 
 - name: Install Touchegg
   include_tasks: touchegg.yml

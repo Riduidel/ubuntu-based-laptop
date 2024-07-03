@@ -1,10 +1,10 @@
 ---
-- name: Add Firefox repository signature
+- name: Add Mozilla repository signature
 # See https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04
   apt_key:
     url: https://packages.mozilla.org/apt/repo-signing-key.gpg 
 
-- name : Add firefox apt repo
+- name : Add Mozilla apt repo
   apt_repository:
     repo: deb https://packages.mozilla.org/apt mozilla main
     state: present
