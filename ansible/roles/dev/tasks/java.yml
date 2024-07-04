@@ -6,6 +6,8 @@
       executable: /bin/bash
 
 - name: Add SDK Man to bash_profile
+  become: yes
+  become_user: "{{ansible_user}}"
   lineinfile: 
     path: "{{ home }}/.bash_profile"
     line: "{{ item }}"
@@ -16,24 +18,20 @@
 
 - name: Install Java
   shell: source ~/.bash_profile && sdk install java {{ java_version }}
-  become: no
   args:
     executable: /bin/bash
 
 - name: Install Groovy
   shell: source ~/.bash_profile && sdk install groovy {{groovy_version}}
-  become: no
   args:
     executable: /bin/bash
 
 - name: Install JBang
   shell: source ~/.bash_profile && sdk install jbang
-  become: no
   args:
     executable: /bin/bash
 
 - name: Install Maven
   shell: source ~/.bash_profile && sdk install maven
-  become: no
   args:
     executable: /bin/bash
