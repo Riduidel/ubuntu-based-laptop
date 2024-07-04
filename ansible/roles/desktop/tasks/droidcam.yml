@@ -10,7 +10,7 @@
 #   apt:
 #     name: droidcam
 
-- name: Install dev packages
+- name: Install Droidcam required packages
   apt:
     name: "{{ packages }}"
   vars:
@@ -18,7 +18,7 @@
     - gcc-12
     - make
     - linux-headers-generic
-
+    - adb
 
 # So NATIVE install !
 - name: Create receiving folder
