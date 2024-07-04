@@ -4,6 +4,7 @@
     name: "{{ packages }}"
   vars:
     packages:
+    - cmake
     - make
     - htop
     - bat
