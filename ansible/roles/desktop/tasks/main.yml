@@ -18,8 +18,8 @@
     - pipx
     # THis clupboard manager seems to work quite well with Wayland
     - diodon
-    - redshift-gtk
     - tilix
+    - shotwell
 
 - name: Install flatpak
   include_tasks: flatpak.yml
