@@ -46,4 +46,5 @@
 - name: Install gnome extensions
   include_tasks: gnome_extensions.yml
 
-# TODO Automate dynamic wallpapers install (but it never worked https://github.com/saint-13/Linux_Dynamic_Wallpapers)
+- name: Install dynamic wallpapers
+  include_tasks: dynamic_wallpapers.yml
