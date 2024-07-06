@@ -1,0 +1,11 @@
+---
+# Automate dynamic wallpapers install (but it never worked https://github.com/saint-13/Linux_Dynamic_Wallpapers)
+- name: Create dynamic wallpapers directory
+  file:
+    path: "{{open_source_folder}}"
+    state: directory
+
+- name: Clone git repository
+  git:
+    repo: https://github.com/saint-13/Linux_Dynamic_Wallpapers.git
+    dest: "{{open_source_folder}}"
