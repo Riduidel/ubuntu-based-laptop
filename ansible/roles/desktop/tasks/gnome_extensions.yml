@@ -15,7 +15,7 @@
 - name: Install Gnome extensions
   become: yes
   become_user: "{{ansible_user}}"
-  command: "gnome-extensions-cli install {{item}}"
+  command: "./gnome-extensions-cli install {{item}}"
   args:
     chdir: "{{home_folder}}/.local/bin"
   with_items:
