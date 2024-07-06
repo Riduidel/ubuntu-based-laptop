@@ -40,9 +40,6 @@
 - name: Install Chromium
   include_tasks: chromium.yml
 
-#- name: Install Stacer
-#  include_tasks: stacer.yml
-
 - name: Install Lutris
   include_tasks: lutris.yml
 
