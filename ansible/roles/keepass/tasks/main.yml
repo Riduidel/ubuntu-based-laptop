@@ -24,6 +24,8 @@
 # We use pam environment to have variables  available to GUI applications (see https://unix.stackexchange.com/a/81274)
 - name: Set the required env variable
   lineinfile:
+    state: present
+    create: true
     path: "{{home_folder}}/.pam_environment"
     search_string: "QT_QPA_PLATFORMTHEME"
     line: "QT_QPA_PLATFORMTHEME='gnome'"
