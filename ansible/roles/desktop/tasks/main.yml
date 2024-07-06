@@ -4,8 +4,6 @@
     name: "{{ packages }}"
   vars:
     packages:
-    - gnome-tweaks
-    - gnome-shell-extension-manager
     - timeshift
     - filezilla
     - dirmngr
@@ -34,8 +32,8 @@
 - name: Install Touchegg
   include_tasks: touchegg.yml
 
-- name: Install Droidcam
-  include_tasks: droidcam.yml
+#- name: Install Droidcam
+#  include_tasks: droidcam.yml
 
 - name: Install Chromium
   include_tasks: chromium.yml
@@ -43,8 +41,8 @@
 - name: Install Lutris
   include_tasks: lutris.yml
 
-- name: Install gnome extensions
-  include_tasks: gnome_extensions.yml
+- name: Reconfigure gnome
+  include_tasks: gnome_configuration.yml
 
 - name: Install dynamic wallpapers
   include_tasks: dynamic_wallpapers.yml

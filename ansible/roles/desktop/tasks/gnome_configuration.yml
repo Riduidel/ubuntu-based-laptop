@@ -1,4 +1,12 @@
 ---
+- name: Install Gnome tools
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - gnome-tweaks
+    - gnome-shell-extension-manager
+
 - name: Install Pano requirements
   apt:
     name: "{{ packages }}"
