@@ -1,6 +1,7 @@
 ---
 - name: Install SDK Man
-  become: no
+  become: yes
+  become_user: "{{ansible_user}}"
   shell: "curl -s 'https://get.sdkman.io' | bash"
   args:
       executable: /bin/bash
@@ -17,21 +18,46 @@
     - 'source "$HOME/.sdkman/bin/sdkman-init.sh"'
 
 - name: Install Java
+  become: yes
+  become_user: "{{ansible_user}}"
   shell: source ~/.bash_profile && sdk install java {{ java_version }}
   args:
     executable: /bin/bash
 
 - name: Install Groovy
+  become: yes
+  become_user: "{{ansible_user}}"
   shell: source ~/.bash_profile && sdk install groovy {{groovy_version}}
   args:
     executable: /bin/bash
 
 - name: Install JBang
+  become: yes
+  become_user: "{{ansible_user}}"
   shell: source ~/.bash_profile && sdk install jbang
   args:
     executable: /bin/bash
 
 - name: Install Maven
+  become: yes
+  become_user: "{{ansible_user}}"
   shell: source ~/.bash_profile && sdk install maven
   args:
     executable: /bin/bash
+
+- name: Create maven folder
+  become: yes
+  become_user: "{{ansible_user}}"
+  file:
+    name: "{{home_folder}}/.m2"
+    state: folder
+
+- name: Wait until maven settings file is copied
+  wait_for:
+    path: "{{kdrive_folder}}/conf/settings.xml"
+- name: Copy maven settings to the right location
+  become: yes
+  become_user: "{{ansible_user}}"
+  copy:
+    src: "{{kdrive_folder}}/conf/settings.xml"
+    dest: "{{home_folder}}/m2/"
