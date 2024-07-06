@@ -1,0 +1,14 @@
+---
+- name: Install Python packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - python3-pip
+      - pipx
+
+- name: Make sure pipx works
+  command: pipx ensurepath
+
+- name: Make sure pipx completion works
+  command: pipx completions
