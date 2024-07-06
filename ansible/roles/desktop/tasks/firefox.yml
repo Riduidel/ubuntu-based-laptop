@@ -42,6 +42,7 @@
 - name: Install Firefox from .deb
   apt:
     name: "{{item}}"
+    allow_downgrade: true
   with_items: 
     - firefox
     - firefox-l10n-fr
