@@ -52,7 +52,7 @@
     name: "{{home_folder}}/.m2"
     state: directory
 
-- name: Wait until maven settings file is copied
+- name: Wait until maven settings file is dowloaded
   wait_for:
     path: "{{kdrive_folder}}/conf/settings.xml"
 - name: Copy maven settings to the right location
@@ -61,4 +61,11 @@
   copy:
     src: "{{kdrive_folder}}/conf/settings.xml"
     remote_src: yes
-    dest: "{{home_folder}}/m2/"
+    dest: "{{home_folder}}/.m2/"
+
+- name: Generate maven toolchains file
+  become: yes
+  become_user: "{{ansible_user}}"
+  shell: source ~/.bash_profile && mvn org.apache.maven.plugins:maven-toolchains-plugin:generate-jdk-toolchains-xml -Dtoolchain.file=/home/nicolas-delsaux/.m2/toolchains.xml
+  args:
+      executable: /bin/bash
