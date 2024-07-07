@@ -34,13 +34,71 @@
     - "{{ansible_user}}"
     - docker
 
-#- name: Run the useful docker images
-#  become: yes
-#  shell: "{{image_cli}}"
-#  args:
-#      executable: /bin/bash
-#  vars:
-#    image_cli:
-#      - docker run -d --name kroki --restart unless-stopped -p29000:8000 yuzutech/kroki
-#      - docker run -d --name watchtower --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower
-#      - docker run -d -p 13000:8080 --add-host=host.docker.internal:host-gateway -v /home/nicolas/.open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+- name: Install watchtower
+  community.docker.docker_container:
+    name: watchtower
+    image: containrrr/watchtower
+    state: started
+    restart_policy: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+- name: Install kroki
+  community.docker.docker_container:
+    name: kroki
+    image: yuzutech/kroki
+    restart_policy: unless-stopped
+    ports:
+      - 29000:8000
+
+- name: Install openwebui
+  community.docker.docker_container:
+    name: openwebui
+    image: ghcr.io/open-webui/open-webui:main
+    restart_policy: unless-stopped
+    ports:
+      - 13000:8000
+    volumes:
+      - "{{home_folder}}/.open-webui:/app/backend/data"
+
+- copy:
+    content: |
+      #!/bin/sh
+      docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro  quay.io/vektorlab/ctop:latest
+    mode: '0750'
+    dest: "{{local_bin_folder}}/ctop"
+  become: yes
+  become_user: "{{ansible_user}}"
+
+- copy:
+    content: |
+      #!/bin/sh
+      docker run --name=taskjuggler --rm=true --net="none" -v ${PWD}:/tj3 treibholz/tj3:latest tj3 %*
+    mode: '0750'
+    dest: "{{local_bin_folder}}/tk"
+  become: yes
+  become_user: "{{ansible_user}}"
+
+- copy:
+    content: |
+      #!/bin/sh
+      docker run --rm --name structurizr-lite -d -p 18080:8080 -v ${PWD}:/usr/local/structurizr structurizr/lite
+    mode: '0750'
+    dest: "{{local_bin_folder}}/structurizr-lite"
+  become: yes
+  become_user: "{{ansible_user}}"
+
+- file:
+    path: "{{home_folder}}/.config/zspotify"
+    state: directory
+  become: yes
+  become_user: "{{ansible_user}}"
+
+- copy:
+    content: |
+      #!/bin/sh
+      docker run --rm -ti -v {{home_folder}}/.config/zspotify:/root/.zspotify -v {{home_folder}}/Musique:/root/Music jsavargas/zspotify
+    mode: '0750'
+    dest: "{{local_bin_folder}}/structurizr-lite"
+  become: yes
+  become_user: "{{ansible_user}}"
