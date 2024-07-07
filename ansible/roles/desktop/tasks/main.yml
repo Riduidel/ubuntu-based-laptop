@@ -41,8 +41,8 @@
 - name: Install Lutris
   include_tasks: lutris.yml
 
-- name: Reconfigure gnome
-  include_tasks: gnome_configuration.yml
-
 - name: Install dynamic wallpapers
   include_tasks: dynamic_wallpapers.yml
+
+- name: Reconfigure gnome
+  include_tasks: gnome_configuration.yml
