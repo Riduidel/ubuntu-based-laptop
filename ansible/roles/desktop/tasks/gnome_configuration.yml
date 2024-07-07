@@ -25,7 +25,7 @@
   become_user: "{{ansible_user}}"
   command: "./gnome-extensions-cli install {{item}}"
   args:
-    chdir: "{{home_folder}}/.local/bin"
+    chdir: "{{local_bin_folder}}"
   with_items:
     - 7065 #tiling-shell/
     - 4470 #media-controls/
