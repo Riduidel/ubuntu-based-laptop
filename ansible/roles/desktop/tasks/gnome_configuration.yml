@@ -6,6 +6,34 @@
     packages:
     - gnome-tweaks
     - gnome-shell-extension-manager
+#    - gconf2
+
+# Changed settings were found thanks to this trick https://discourse.gnome.org/t/gsettings-monitor-all-system-settings-change/3699
+# Unfortunatly the ansible role doesn't work (since gconftool2 is deprecated)
+#- name: Set night mode on
+#  community.general.gconftool2:
+#    state: present
+#    key: "/org/gnome/settings-daemon/plugins/color/night-light-enabled"
+#    value: "true"
+#    value_type: "bool"
+#
+#- name: Show battery level
+#        key: "/org/gnome/desktop/interface/show-battery-percentage"
+#        value: true
+#        type: "bool"
+#      no_dynamic_workspaces:
+#        key: "/org/gnome/mutter/dynamic-workspaces"
+#        value: false
+#        type: "bool"
+#      only_one_workspace:
+#        key: /org/gnome/desktop/wm/preferences/num-workspaces
+#        value: 1
+#        type: "int"
+#      "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding": '<Control><Alt>v'
+#      "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command": '/usr/bin/diodon'
+#      "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name": 'trigger diodon'
+#
+#      # Finally set list of shortcuts
 
 - name: Install Pano requirements
   apt:
@@ -27,14 +55,11 @@
   args:
     chdir: "{{local_bin_folder}}"
   with_items:
+    - 3628 #arcmenu/
+    - 1160 #dash-to-panel/
+    - 6096 #smile-complementary-extension/
     - 7065 #tiling-shell/
     - 4470 #media-controls/
-    - 4245 #gesture-improvements/
-    - 5278 #pano/
-    - 1160 #dash-to-panel/
-    - 3628 #arcmenu/
-    - 6096 #smile-complementary-extension/
-    - 3193 #blur-my-shell/
     - 3843 #just-perfection/
     - 19 #user-themes/
     - 6784 #wiggle/
