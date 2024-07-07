@@ -50,7 +50,7 @@
   become_user: "{{ansible_user}}"
   file:
     name: "{{home_folder}}/.m2"
-    state: folder
+    state: directory
 
 - name: Wait until maven settings file is copied
   wait_for:
@@ -60,4 +60,5 @@
   become_user: "{{ansible_user}}"
   copy:
     src: "{{kdrive_folder}}/conf/settings.xml"
+    remote_src: yes
     dest: "{{home_folder}}/m2/"
