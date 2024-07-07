@@ -27,5 +27,5 @@
 - name: Install Docker containers and other stuff
   include_tasks: docker.yml
 
-- name: Finally clone some useful repositories
-  include_tasks: clone_my_repositories.yml
+# - name: Finally clone some useful repositories
+#   include_tasks: clone_my_repositories.yml
