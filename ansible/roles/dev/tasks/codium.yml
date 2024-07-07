@@ -19,3 +19,6 @@
 - name: Install codium
   apt:
     name: codium
+
+- name: Install sync extension
+  shell: codium --install-extension zokugun.sync-settings
