@@ -32,8 +32,8 @@
 - name: Install Touchegg
   include_tasks: touchegg.yml
 
-#- name: Install Droidcam
-#  include_tasks: droidcam.yml
+- name: Install Droidcam
+  include_tasks: droidcam.yml
 
 - name: Install Chromium
   include_tasks: chromium.yml
