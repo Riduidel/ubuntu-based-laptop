@@ -21,4 +21,6 @@
     name: codium
 
 - name: Install sync extension
+  become: yes
+  become_user: "{{ansible_user}}"
   shell: codium --install-extension zokugun.sync-settings
