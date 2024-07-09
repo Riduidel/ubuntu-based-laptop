@@ -1,0 +1,96 @@
+---
+- name: check if cargo is installed
+  become: yes
+  become_user: "{{ansible_user}}"
+  shell: source .bash_profile && command -v cargo
+  args:
+    executable: /bin/bash
+  register: cargo_exists
+  ignore_errors: yes
+
+- name: Download Installer
+  become: yes
+  become_user: "{{ansible_user}}"
+  get_url:
+    url: https://sh.rustup.rs
+    dest: "{{download_folder}}/sh.rustup.rs"
+    mode: '0755'
+    force: 'yes'
+  when: cargo_exists is failed
+
+- name: install rust/cargo
+  become: yes
+  become_user: "{{ansible_user}}"
+  shell: "{{download_folder}}/sh.rustup.rs -y"
+  when: cargo_exists is failed
+
+- name: Add rust/cargo to bash_profile
+  become: yes
+  become_user: "{{ansible_user}}"
+  lineinfile: 
+    path: "{{ home }}/.bash_profile"
+    line: "[ -f ~/.cargo/env ] && source $HOME/.cargo/env"
+    state: "present"
+    create: "yes"
+
+- name: check if zenith is installed
+  become: yes
+  become_user: "{{ansible_user}}"
+  shell: source .bash_profile && command -v zenith
+  args:
+    executable: /bin/bash
+  register: zenith_exists
+  ignore_errors: yes
+
+- name: Install Zenith
+  become: yes
+  become_user: "{{ansible_user}}"
+  shell: source .bash_profile && cargo install --git https://github.com/bvaisvil/zenith.git
+  args:
+    executable: /bin/bash
+  when: zenith_exists is failed
+
+- name: Install system dependencies
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - build-essential
+    - libxcb1-dev
+    - libxcb-render0-dev
+    - libxcb-shape0-dev
+    - libxcb-xfixes0-dev
+    - bat
+
+- name: Create bat symlink
+  ansible.builtin.file:
+    src: /usr/bin/batcat
+    dest: "{{home_folder}}/.local/bin/bat"
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
+    state: link
+
+- name: Configure bat theme
+  become: yes
+  become_user: "{{ansible_user}}"
+  lineinfile: 
+    path: "{{ home }}/.bash_profile"
+    line: "export BAT_THEME=\"Solarized (light)\""
+    state: "present"
+    create: "yes"
+
+- name: Install cargo-based softwares
+  become: yes
+  become_user: "{{ansible_user}}"
+  shell: "source .bash_profile && cargo install {{item}}"
+  args:
+    executable: /bin/bash
+  with_items:
+    - spacer
+    - broot --locked --features clipboard 
+    - bottom --locked
+    - procs
+    - diskonaut
+    - du-dust
+    - lsd
+    - cfonts

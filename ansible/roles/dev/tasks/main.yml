@@ -17,6 +17,9 @@
 - name: Install Java dependencies
   include_tasks: java.yml
 
+- name: Install Rust dependencies
+  include_tasks: rust.yml
+
 - name: Install Eclipse
   flatpak:
     name: org.eclipse.Java
