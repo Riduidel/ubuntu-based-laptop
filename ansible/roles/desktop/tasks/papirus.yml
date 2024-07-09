@@ -1,0 +1,23 @@
+---
+# See https://github.com/PapirusDevelopmentTeam/papirus-icon-theme
+# https://github.com/costales/folder-color/
+- name: Add Papirus PPA and other stuff
+  apt_repository:
+    repo: "{{item}}"
+    state: present
+  with_items:
+    - ppa:papirus/papirus
+    - ppa:costales/folder-color
+
+
+- name: Install Folder color elements
+  apt:
+    name: "{{item}}"
+  with_items:
+    - papirus-icon-theme 
+    - python3-nautilus
+    - nautilus
+    - folder-color
+    - filezilla-theme-papirus
+    - arc-theme
+
