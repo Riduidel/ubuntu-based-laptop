@@ -20,9 +20,12 @@
 - name: Install Java
   become: yes
   become_user: "{{ansible_user}}"
-  shell: source ~/.bash_profile && sdk install java {{ java_version }}
+  shell: "source ~/.bash_profile && sdk install java {{item}}"
   args:
     executable: /bin/bash
+  with_items:
+    - "{{ java_version }}"
+    - 17.0.11-tem
 
 - name: Install Groovy
   become: yes
