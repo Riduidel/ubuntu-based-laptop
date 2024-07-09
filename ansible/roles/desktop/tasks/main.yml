@@ -16,6 +16,9 @@
     - diodon
     - tilix
     - shotwell
+    - sushi
+    - variety
+    - gedit
 
 - name: Install python subsystem
   include_tasks: python.yml
@@ -41,8 +44,12 @@
 - name: Install Lutris
   include_tasks: lutris.yml
 
-- name: Install dynamic wallpapers
-  include_tasks: dynamic_wallpapers.yml
+# Guess what ? This crashes the Gnome control panel and tends to crash over time
+#- name: Install dynamic wallpapers
+#  include_tasks: dynamic_wallpapers.yml
+
+- name: Install Papyrus icons
+  include_tasks: papirus.yml
 
 - name: Reconfigure gnome
   include_tasks: gnome_configuration.yml
