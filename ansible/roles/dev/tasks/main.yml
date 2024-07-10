@@ -24,8 +24,8 @@
   flatpak:
     name: org.eclipse.Java
 
-- name: Install Codium
-  include_tasks: codium.yml
+- name: Install some editors
+  include_tasks: editors.yml
 
 - name: Install Docker containers and other stuff
   include_tasks: docker.yml

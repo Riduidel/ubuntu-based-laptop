@@ -18,6 +18,7 @@
     - shotwell
     - variety
     - gedit
+    - vlc
 
 - name: Install python subsystem
   include_tasks: python.yml

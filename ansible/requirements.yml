@@ -1,9 +1,7 @@
 ---
 collections:
 - name: community.general
-- name: https://github.com/QueraTeam/ansible-github
-  type: git
-  version: df5a6c5d9cdad1493469d4df2dba5750ad122b30
+  version: 9.1.0
 
 roles:
 - src: nickjj.docker
