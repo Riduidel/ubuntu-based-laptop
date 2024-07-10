@@ -102,3 +102,12 @@
     dest: "{{local_bin_folder}}/structurizr-lite"
   become: yes
   become_user: "{{ansible_user}}"
+
+- copy:
+    content: |
+      #!/bin/sh
+      docker run -ti --rm mpepping/ponysay $@
+    mode: '0750'
+    dest: "{{local_bin_folder}}/ponysay"
+  become: yes
+  become_user: "{{ansible_user}}"
