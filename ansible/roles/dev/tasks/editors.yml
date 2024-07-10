@@ -6,6 +6,7 @@
     packages:
     - bash-completion
     - pluma
+    - gedit
     - nano
 
 # See https://maniacgeek.net/linux-open-source/comment-installer-vscodium-sur-ubuntu-linux/
