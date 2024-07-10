@@ -18,6 +18,10 @@
     - shotwell
     - variety
     - vlc
+    - gping
+    - ncdu
+    - prettyping
+    - progress
 
 - name: Install python subsystem
   include_tasks: python.yml
