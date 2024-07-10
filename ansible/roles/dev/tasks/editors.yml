@@ -6,6 +6,7 @@
     packages:
     - bash-completion
     - pluma
+    - nano
 
 # See https://maniacgeek.net/linux-open-source/comment-installer-vscodium-sur-ubuntu-linux/
 - name : Add apt keys
@@ -34,3 +35,13 @@
   become: yes
   become_user: "{{ansible_user}}"
   shell: codium --install-extension zokugun.sync-settings
+
+- name: Configure terminal editor
+  become: yes
+  become_user: "{{ansible_user}}"
+  lineinfile: 
+    path: "{{ home }}/.profile"
+    line: "export EDITOR=nano"
+    state: "present"
+    create: "yes"
+
