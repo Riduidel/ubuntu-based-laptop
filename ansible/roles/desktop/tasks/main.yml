@@ -22,6 +22,14 @@
     - ncdu
     - prettyping
     - progress
+    - bmon
+    - iftop
+    - lutris
+    - gnome-sushi
+    - folder-color
+    - nautilus-admin
+    - xarchiver
+
 
 - name: Install python subsystem
   include_tasks: python.yml
