@@ -1,0 +1,26 @@
+---
+# Dell command configure obtained from https://www.dell.com/support/kbdoc/en-us/000178000/dell-command-configure
+- name: Create receiving folder
+  file:
+    path: "{{dell_command_configure_temp_folder}}"
+    state: directory
+- name: Download Dell command configure
+  unarchive:
+    src : "{{dell_command_configure_source}}"
+    dest: "{{dell_command_configure_temp_folder}}"
+    remote_src: true
+    creates: "{{dell_command_configure_temp_folder}}/{{dell_command_configure_name}}.deb"
+
+- name: Find all the .deb packages
+  find:
+    paths: "{{dell_command_configure_temp_folder}}"
+    patterns: "*.deb"
+  register: dell_command_configure_packages
+
+- name: Install those packages
+  apt:
+    deb: "{{item}}"
+  become: true
+  with_items:
+    - "{{dell_command_configure_temp_folder}}/srvadmin-hapi_9.5.0_amd64.deb"
+    - "{{dell_command_configure_temp_folder}}/{{dell_command_configure_name}}.deb"

@@ -30,6 +30,8 @@
     - nautilus-admin
     - xarchiver
 
+- name: Install machine-related dependencies
+  include_tasks: dell.yml
 
 - name: Install python subsystem
   include_tasks: python.yml
