@@ -26,6 +26,7 @@
   with_items:
     - "{{ java_version }}"
     - 17.0.11-tem
+    - 21.0.2-graalce
 
 - name: Install Groovy
   become: yes
