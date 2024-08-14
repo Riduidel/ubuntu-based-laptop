@@ -16,7 +16,6 @@
     - diodon
     - tilix
     - shotwell
-    - variety
     - vlc
     - gping
     - ncdu
@@ -67,3 +66,6 @@
 
 - name: Reconfigure gnome
   include_tasks: gnome_configuration.yml
+
+- name: Install LinMuzei
+  include_tasks: linmuzei.yml

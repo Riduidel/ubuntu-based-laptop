@@ -1,0 +1,24 @@
+---
+- name: Install LinMuzei required packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - sed
+    - curl
+    - jq
+
+- name: Clone LinMuzei repo
+  become: true
+  become_user: "{{ansible_user}}"
+  ansible.builtin.git:
+    repo: "https://github.com/Riduidel/linmuzei"
+    dest: "{{open_source_folder}}/LinMuzei"
+
+- name: Install LinMuzei in cron
+  become: true
+  become_user: "{{ansible_user}}"
+  cron:
+    name: "Run LinMuzei hourly"
+    special_time: hourly
+    job: "{{open_source_folder}}/LinMuzei/linmuzei.sh"
