@@ -17,8 +17,17 @@
     packages:
     - gcc-12
     - make
+    - linux-generic
     - linux-headers-generic
+    - v4l2loopback-dkms
     - adb
+
+# The archlinux wiki gives some good insights
+- name: Add the v4l2loopback module
+  community.general.modprobe:
+    name: v4l2loopback
+    params: video_nr=9 card_label=Video-Loopback exclusive_caps=1
+    state: present
 
 # So NATIVE install !
 - name: Create receiving folder
