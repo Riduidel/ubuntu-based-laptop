@@ -1,13 +1,13 @@
 ---
 - name: Install SDK Man
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: "curl -s 'https://get.sdkman.io' | bash"
   args:
       executable: /bin/bash
 
 - name: Add SDK Man to bash_profile
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   lineinfile: 
     path: "{{ home }}/.bash_profile"
@@ -18,7 +18,7 @@
     - 'source "$HOME/.sdkman/bin/sdkman-init.sh"'
 
 - name: Install Java
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: "source ~/.bash_profile && sdk install java {{item}}"
   args:
@@ -29,28 +29,28 @@
     - 21.0.2-graalce
 
 - name: Install Groovy
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: source ~/.bash_profile && sdk install groovy {{groovy_version}}
   args:
     executable: /bin/bash
 
 - name: Install JBang
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: source ~/.bash_profile && sdk install jbang
   args:
     executable: /bin/bash
 
 - name: Install Maven
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: source ~/.bash_profile && sdk install maven
   args:
     executable: /bin/bash
 
 - name: Create maven folder
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   file:
     name: "{{home_folder}}/.m2"
@@ -60,7 +60,7 @@
   wait_for:
     path: "{{kdrive_folder}}/conf/settings.xml"
 - name: Copy maven settings to the right location
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   copy:
     src: "{{kdrive_folder}}/conf/settings.xml"
@@ -68,7 +68,7 @@
     dest: "{{home_folder}}/.m2/"
 
 - name: Generate maven toolchains file
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: source ~/.bash_profile && mvn org.apache.maven.plugins:maven-toolchains-plugin:generate-jdk-toolchains-xml -Dtoolchain.file=/home/nicolas-delsaux/.m2/toolchains.xml
   args:

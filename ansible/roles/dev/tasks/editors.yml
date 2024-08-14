@@ -33,12 +33,12 @@
       - cudatext
 
 - name: Install sync extension
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: codium --install-extension zokugun.sync-settings
 
 - name: Configure terminal editor
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   lineinfile: 
     path: "{{ home }}/.profile"

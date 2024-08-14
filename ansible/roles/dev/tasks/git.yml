@@ -7,7 +7,7 @@
     - git
 
 - name: Configure git username globally
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   git_config:
     name: user.name
@@ -15,7 +15,7 @@
     value: 'Nicolas Delsaux'
 
 - name: Configure git email globally
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   git_config:
     name: user.email

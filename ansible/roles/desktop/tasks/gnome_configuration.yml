@@ -44,12 +44,12 @@
     - gir1.2-gsound-1.0
 
 - name: Install gnome-extensions command line
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   command: pipx install gnome-extensions-cli
 
 - name: Install Gnome extensions
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   command: "./gnome-extensions-cli install {{item}}"
   args:

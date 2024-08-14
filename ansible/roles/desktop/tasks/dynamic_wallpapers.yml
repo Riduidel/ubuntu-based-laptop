@@ -6,14 +6,14 @@
     state: directory
 
 - name: Clone git repository
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   git:
     repo: https://github.com/saint-13/Linux_Dynamic_Wallpapers.git
     dest: "{{open_source_folder}}/Linux_Dynamic_Wallpapers"
 
 - name: Run install package
-  become: yes
+  become: true
   shell: "./install.sh"
   args:
     chdir: "{{open_source_folder}}/Linux_Dynamic_Wallpapers"

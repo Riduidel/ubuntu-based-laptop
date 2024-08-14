@@ -1,6 +1,6 @@
 ---
 - name: check if cargo is installed
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: source .bash_profile && command -v cargo
   args:
@@ -9,7 +9,7 @@
   ignore_errors: yes
 
 - name: Download Installer
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   get_url:
     url: https://sh.rustup.rs
@@ -19,13 +19,13 @@
   when: cargo_exists is failed
 
 - name: install rust/cargo
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: "{{download_folder}}/sh.rustup.rs -y"
   when: cargo_exists is failed
 
 - name: Add rust/cargo to bash_profile
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   lineinfile: 
     path: "{{ home }}/.bash_profile"
@@ -34,7 +34,7 @@
     create: "yes"
 
 - name: check if zenith is installed
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: source .bash_profile && command -v zenith
   args:
@@ -43,7 +43,7 @@
   ignore_errors: yes
 
 - name: Install Zenith
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: source .bash_profile && cargo install --git https://github.com/bvaisvil/zenith.git
   args:
@@ -71,7 +71,7 @@
     state: link
 
 - name: Configure bat theme
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   lineinfile: 
     path: "{{ home }}/.bash_profile"
@@ -80,7 +80,7 @@
     create: "yes"
 
 - name: Install cargo-based softwares
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
   shell: "source .bash_profile && cargo install {{item}}"
   args:

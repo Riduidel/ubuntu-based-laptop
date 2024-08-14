@@ -67,7 +67,7 @@
       docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro  quay.io/vektorlab/ctop:latest
     mode: '0750'
     dest: "{{local_bin_folder}}/ctop"
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
 
 - copy:
@@ -76,7 +76,7 @@
       docker run --name=taskjuggler --rm=true --net="none" -v ${PWD}:/tj3 treibholz/tj3:latest tj3 %*
     mode: '0750'
     dest: "{{local_bin_folder}}/tk"
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
 
 - copy:
@@ -85,13 +85,13 @@
       docker run --rm --name structurizr-lite -d -p 18080:8080 -v ${PWD}:/usr/local/structurizr structurizr/lite
     mode: '0750'
     dest: "{{local_bin_folder}}/structurizr-lite"
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
 
 - file:
     path: "{{home_folder}}/.config/zspotify"
     state: directory
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
 
 - copy:
@@ -100,7 +100,7 @@
       docker run --rm -ti -v {{home_folder}}/.config/zspotify:/root/.zspotify -v {{home_folder}}/Musique:/root/Music jsavargas/zspotify
     mode: '0750'
     dest: "{{local_bin_folder}}/structurizr-lite"
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
 
 - copy:
@@ -109,5 +109,5 @@
       docker run -ti --rm mpepping/ponysay $@
     mode: '0750'
     dest: "{{local_bin_folder}}/ponysay"
-  become: yes
+  become: true
   become_user: "{{ansible_user}}"
