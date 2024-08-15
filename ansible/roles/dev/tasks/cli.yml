@@ -1,0 +1,23 @@
+---
+- name: Check if destination file exists
+  stat: 
+    path: "{{local_bin_folder}}/noti"
+  register: noti_exist
+
+- name: check latest noti
+  uri:
+    url: https://api.github.com/repos/variadico/noti/releases/latest
+    return_content: true
+  register: noti_latest
+  when: noti_exist.stat.exists == False
+
+- name: "installing noti {{ noti_latest.json.tag_name }}"
+  become: true
+  become_user: "{{ansible_user}}"
+  loop: "{{ noti_latest.json.assets }}"
+  when: "noti_latest is defined and 'linux' in item.name"
+  unarchive:
+    remote_src: yes
+    src: "{{ item.browser_download_url }}"
+    dest: "{{ local_bin_folder }}"
+    keep_newer: yes

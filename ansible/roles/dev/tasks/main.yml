@@ -24,6 +24,9 @@
   flatpak:
     name: org.eclipse.Java
 
+- name: Install some CLI utilities
+  include_tasks: cli.yml
+
 - name: Install some editors
   include_tasks: editors.yml
 
