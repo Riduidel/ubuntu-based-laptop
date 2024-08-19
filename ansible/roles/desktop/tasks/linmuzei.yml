@@ -21,4 +21,4 @@
   cron:
     name: "Run LinMuzei hourly"
     special_time: hourly
-    job: "{{open_source_folder}}/LinMuzei/linmuzei.sh"
+    job: "cd {{open_source_folder}}/LinMuzei/ && ./linmuzei.sh > linmuzei.out.log 2> linmuzei.err.log"
