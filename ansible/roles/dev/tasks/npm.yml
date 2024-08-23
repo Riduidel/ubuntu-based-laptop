@@ -1,0 +1,11 @@
+---
+- name: Install npm
+  apt:
+    name: "{{item}}"
+  with_items:
+    -  npm
+
+- name: Install readme generator
+  community.general.npm:
+    name: coffee-script
+    global: true
