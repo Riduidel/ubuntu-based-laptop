@@ -67,5 +67,6 @@
 - name: Reconfigure gnome
   include_tasks: gnome_configuration.yml
 
-- name: Install LinMuzei
-  include_tasks: linmuzei.yml
+# I'm not good enough at linux bash to configure that the good way
+#- name: Install LinMuzei
+#  include_tasks: linmuzei.yml

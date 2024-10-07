@@ -32,7 +32,7 @@ Dans le dossier `ubuntu-based-server`, lancer la commande **dans un terminal ext
 
 Entrer le mot de passe maître de Keepass
 
-    ssh nicolas-delsaux@192.168.0.14
+    mkdir /root/.ssh && ssh-keyscan -t ED25519 192.168.0.14 >> /root/.ssh/known_hosts
     ansible-galaxy install -r requirements.yml
     ansible-playbook -i hosts bootstrap.yml --ask-vault-pass --extra-vars="ansible_password=\"$SESSION_PASSWORD\" ansible_become_password=\"$SESSION_PASSWORD\" ansible_ssh_password=\"$SESSION_PASSWORD\""
 

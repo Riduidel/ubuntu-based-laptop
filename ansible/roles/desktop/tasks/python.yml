@@ -5,11 +5,8 @@
   vars:
     packages:
       - python3-pip
+      - python3-venv
       - pipx
 
-- name: Make sure pipx works
-  lineinfile: 
-    path: "{{ home }}/.bashrc"
-    line: "export PATH=\"$PATH:{{home_folder}}/.local/bin\""
-    state: "present"
-    create: "yes"
+# https://stackoverflow.com/a/43108253/15619
+# DAAAMN https://github.com/Bigouden/woob-bank-exporter
