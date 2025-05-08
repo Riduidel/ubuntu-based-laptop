@@ -4,7 +4,7 @@
     name: "{{ packages }}"
   vars:
     packages:
-    - timeshift
+#    - timeshift
     - filezilla
     - dirmngr
     - gnupg
@@ -17,21 +17,20 @@
     - tilix
     - shotwell
     - vlc
-    - gping
+#    - gping
     - ncdu
     - prettyping
     - progress
     - bmon
     - iftop
-    - lutris
     - gnome-sushi
     - folder-color
     - nautilus-admin
     - xarchiver
     - pinta
 
-- name: Install machine-related dependencies
-  include_tasks: dell.yml
+#- name: Install machine-related dependencies
+#  include_tasks: dell.yml
 
 - name: Install python subsystem
   include_tasks: python.yml
@@ -48,8 +47,8 @@
 - name: Install Touchegg
   include_tasks: touchegg.yml
 
-- name: Install Droidcam
-  include_tasks: droidcam.yml
+#- name: Install Droidcam
+#  include_tasks: droidcam.yml
 
 - name: Install Chromium
   include_tasks: chromium.yml
@@ -61,8 +60,8 @@
 - name: Install Papyrus icons
   include_tasks: papirus.yml
 
-- name: Install Woob
-  include_tasks: woob.yml
+#- name: Install Woob
+#  include_tasks: woob.yml
 
 - name: Reconfigure gnome
   include_tasks: gnome_configuration.yml
