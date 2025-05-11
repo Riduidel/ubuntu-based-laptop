@@ -21,7 +21,7 @@ Entrer le mot de passe maître de Keepass
 
     ssh nicolas-delsaux@192.168.0.14
     ansible-galaxy install -r requirements.yml
-    ansible-playbook -i hosts bootstrap.yml --extra-vars="ansible_password=\"$SESSION_PASSWORD\" ansible_become_password=\"$SESSION_PASSWORD\" ansible_ssh_password=\"$SESSION_PASSWORD\""
+    ansible-playbook -i hosts bootstrap.yml --extra-vars="ansible_password=\"$SESSION_PASSWORD\" ansible_become_password=\"$SESSION_PASSWORD\" ansible_ssh_password=\"$SESSION_PASSWORD\"" --ask-vault-pass
 
 ## Lancer avec Linux
 

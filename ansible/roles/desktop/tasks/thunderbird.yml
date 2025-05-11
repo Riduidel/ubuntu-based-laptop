@@ -1,8 +1,14 @@
 ---
-- name : Add Mozilla team ppa
-  apt_repository:
-    repo: ppa:mozillateam/ppa
+- name: Add Mozilla team PPA
+  deb822_repository:
+    name: Mozillateam
     state: present
+    uris: https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/
+    suites: plucky
+    signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x738beb9321d1aaec13ea9391aebdf4819be21867
+    components:
+      - main
+  register: thunderbird_ppa
 
 - name: Add Thunderbird pin
   copy:
@@ -27,7 +33,7 @@
 - name: Update apt cache if configuration changed
   apt:
     update_cache: true
-  when: thunderbird_pin.changed or thunderbird_block.changed
+  when: thunderbird_ppa.changed or thunderbird_pin.changed or thunderbird_block.changed
 
 - name: Remove Thunderbird snap
   community.general.snap:

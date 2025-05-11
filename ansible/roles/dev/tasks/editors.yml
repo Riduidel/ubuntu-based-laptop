@@ -10,19 +10,15 @@
     - nano
 
 # See https://maniacgeek.net/linux-open-source/comment-installer-vscodium-sur-ubuntu-linux/
-- name : Add apt keys
-  apt_key:
-    url: "{{item}}"
-  with_items:
-    - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
-
-- name : Add apt repos
-  apt_repository:
-    repo: "{{item}}"
+- name: Add VSCodium debian repository
+  deb822_repository:
+    name: VSCodium
     state: present
-  with_items:
-    - "deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main"
-    - "deb [trusted=yes] https://apt.fury.io/cudatext/ /"
+    uris: https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs
+    suites: vscodium
+    signed_by: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+    components:
+      - main
 
 - name: Install editors
   apt:
@@ -30,7 +26,6 @@
   vars:
     packages:
       - codium
-      - cudatext
 
 - name: Install sync extension
   become: true
