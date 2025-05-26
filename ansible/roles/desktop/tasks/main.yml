@@ -24,10 +24,10 @@
     - bmon
     - iftop
     - gnome-sushi
-    - folder-color
+#    - folder-color
     - nautilus-admin
     - xarchiver
-    - pinta
+ #   - pinta
 
 #- name: Install machine-related dependencies
 #  include_tasks: dell.yml
