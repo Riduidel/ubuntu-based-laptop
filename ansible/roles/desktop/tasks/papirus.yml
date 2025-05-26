@@ -2,13 +2,24 @@
 # See https://github.com/PapirusDevelopmentTeam/papirus-icon-theme
 # https://github.com/costales/folder-color/
 - name: Add Papirus PPA and other stuff
-  apt_repository:
-    repo: "{{item}}"
+  deb822_repository:
+    name: Papirus
     state: present
-  with_items:
-    - ppa:papirus/papirus
-    - ppa:costales/folder-color
+    uris: https://ppa.launchpadcontent.net/papirus/papirus/ubuntu
+    suites: plucky
+    signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9461999446faf0df770bfc9ae58a9d36647cae7f
+    components:
+      - main
 
+- name: Add Folder-color PPA and other stuff
+  deb822_repository:
+    name: Folder-color
+    state: present
+    uris: https://ppa.launchpadcontent.net/costales/folder-color/ubuntu
+    suites: oracular
+    signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xae5c4a50de7b63c5b15de1f73aaaa64ae441eb13
+    components:
+      - main
 
 - name: Install Folder color elements
   apt:
@@ -17,7 +28,7 @@
     - papirus-icon-theme 
     - python3-nautilus
     - nautilus
-    - folder-color
-    - filezilla-theme-papirus
+#    - folder-color
+#    - filezilla-theme-papirus
     - arc-theme
 

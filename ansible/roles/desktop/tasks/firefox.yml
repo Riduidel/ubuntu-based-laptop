@@ -1,20 +1,15 @@
 ---
-- name: Install firefox dependencies
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-      - apt-key
-
-- name: Add Mozilla repository signature
 # See https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04
-  apt_key:
-    url: https://packages.mozilla.org/apt/repo-signing-key.gpg 
-
-- name : Add Mozilla apt repo
-  apt_repository:
-    repo: deb https://packages.mozilla.org/apt mozilla main
+- name: Add Mozilla team PPA
+  deb822_repository:
+    name: Mozillateam
     state: present
+    uris: https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/
+    suites: plucky
+    signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x738beb9321d1aaec13ea9391aebdf4819be21867
+    components:
+      - main
+  register: firefox_ppa
 
 - name: Add Firefox pin
   copy:
@@ -39,7 +34,7 @@
 - name: Update apt cache if configuration changed
   apt:
     update_cache: true
-  when: firefox_pin.changed or firefox_block.changed
+  when: firefox_ppa.changed or firefox_pin.changed or firefox_block.changed
 
 - name: Remove Firefox snap
   community.general.snap:
@@ -52,4 +47,16 @@
     allow_downgrade: true
   with_items: 
     - firefox
-    - firefox-l10n-fr
+    - firefox-locale-fr
+
+- name: Add option to allow Firefox to use touchpad gestures
+  become: true
+  become_user: "{{ansible_user}}"
+  lineinfile: 
+    path: "{{ home }}/.bash_profile"
+    line: "{{ item }}"
+    state: "present"
+    create: "yes"
+  with_items:
+    - 'export MOZ_ENABLE_WAYLAND=1'
+

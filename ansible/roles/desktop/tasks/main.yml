@@ -4,7 +4,6 @@
     name: "{{ packages }}"
   vars:
     packages:
-#    - timeshift
     - filezilla
     - dirmngr
     - gnupg
@@ -12,7 +11,7 @@
     - ca-certificates
     - flatpak
     - gnome-software-plugin-flatpak
-    # This clupboard manager seems to work quite well with Wayland
+    # This clipboard manager seems to work quite well with Wayland
     - diodon
     - tilix
     - shotwell
@@ -44,14 +43,14 @@
 - name: Install Thunderbird .deb
   include_tasks: thunderbird.yml
 
-- name: Install Touchegg
-  include_tasks: touchegg.yml
+#- name: Install Touchegg
+#  include_tasks: touchegg.yml
 
 #- name: Install Droidcam
 #  include_tasks: droidcam.yml
 
-- name: Install Chromium
-  include_tasks: chromium.yml
+#- name: Install Chromium
+#  include_tasks: chromium.yml
 
 # Guess what ? This crashes the Gnome control panel and tends to crash over time
 #- name: Install dynamic wallpapers

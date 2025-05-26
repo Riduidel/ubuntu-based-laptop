@@ -1,9 +1,14 @@
 ---
 - name: Add KeepassXC PPA
-  apt_repository:
-    repo: ppa:phoerious/keepassxc
+  deb822_repository:
+    name: KeepassXC
     state: present
-
+    uris: https://ppa.launchpadcontent.net/phoerious/keepassxc/ubuntu
+    suites: plucky
+    signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xd89c66d0e31fea2874ebd20561922ab60068fcd6
+    components:
+      - main
+      
 - name: Pin repo to ensure things go nice
   copy:
     dest: /etc/apt/preferences.d/keepassxc-pin

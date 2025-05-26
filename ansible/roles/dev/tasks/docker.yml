@@ -1,13 +1,14 @@
 ---
 # See https://maniacgeek.net/linux-open-source/comment-installer-vscodium-sur-ubuntu-linux/
-- name : Add Docker apt key
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-
-- name : Add Docker apt repo
-  apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+- name: Add Docker debian repository
+  deb822_repository:
+    name: Docker
     state: present
+    uris: https://download.docker.com/linux/ubuntu
+    suites: plucky
+    signed_by:  https://download.docker.com/linux/ubuntu/gpg
+    components:
+      - stable
 
 - name: Install Docker packages
   apt:
@@ -51,15 +52,15 @@
     ports:
       - 29000:8000
 
-- name: Install openwebui
-  community.docker.docker_container:
-    name: openwebui
-    image: ghcr.io/open-webui/open-webui:main
-    restart_policy: unless-stopped
-    ports:
-      - 13000:8000
-    volumes:
-      - "{{home_folder}}/.open-webui:/app/backend/data"
+#- name: Install openwebui
+#  community.docker.docker_container:
+#    name: openwebui
+#    image: ghcr.io/open-webui/open-webui:main
+#    restart_policy: unless-stopped
+#    ports:
+#      - 13000:8000
+#    volumes:
+#      - "{{home_folder}}/.open-webui:/app/backend/data"
 
 - copy:
     content: |

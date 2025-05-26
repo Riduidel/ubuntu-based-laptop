@@ -21,3 +21,5 @@
     src: "{{ item.browser_download_url }}"
     dest: "{{ local_bin_folder }}"
     keep_newer: yes
+  when: noti_exist.stat.exists == False
+
