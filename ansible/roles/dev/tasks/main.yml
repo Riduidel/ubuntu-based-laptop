@@ -9,6 +9,7 @@
     - htop
     - bat
     - fzf
+    - curl
     - fonts-firacode
 
 - name: Install and configure git
