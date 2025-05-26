@@ -17,7 +17,7 @@
 
 - name: Download AppImageLauncher
   get_url:
-    url : "https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher_2.2.0-gha111.d9d4c73+bionic_amd64.deb"
+    url : "https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb"
     dest: "{{download_folder}}/AppImageLauncher.deb"
   when: appimage_launcher_exist.stat.exists == False
 
