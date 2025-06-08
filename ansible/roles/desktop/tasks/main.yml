@@ -4,7 +4,6 @@
     name: "{{ packages }}"
   vars:
     packages:
-#    - timeshift
     - filezilla
     - dirmngr
     - gnupg
@@ -17,18 +16,17 @@
     - tilix
     - shotwell
     - vlc
-    - gping
+#    - gping
     - ncdu
     - prettyping
     - progress
     - bmon
     - iftop
-    - lutris
     - gnome-sushi
 #    - folder-color
     - nautilus-admin
     - xarchiver
-#    - pinta
+ #   - pinta
 
 #- name: Install machine-related dependencies
 #  include_tasks: dell.yml
@@ -67,5 +65,6 @@
 - name: Reconfigure gnome
   include_tasks: gnome_configuration.yml
 
-- name: Install LinMuzei
-  include_tasks: linmuzei.yml
+# I'm not good enough at linux bash to configure that the good way
+#- name: Install LinMuzei
+#  include_tasks: linmuzei.yml

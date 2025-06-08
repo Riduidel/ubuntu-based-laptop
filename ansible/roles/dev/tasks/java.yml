@@ -56,7 +56,7 @@
     name: "{{home_folder}}/.m2"
     state: directory
 
-- name: Wait until maven settings file is dowloaded
+- name: Wait until user settings file is dowloaded
   wait_for:
     path: "{{kdrive_folder}}/conf/settings.xml"
 - name: Copy maven settings to the right location
@@ -73,3 +73,5 @@
   shell: source ~/.bash_profile && mvn org.apache.maven.plugins:maven-toolchains-plugin:generate-jdk-toolchains-xml -Dtoolchain.file=/home/nicolas-delsaux/.m2/toolchains.xml
   args:
       executable: /bin/bash
+
+- name: Update maven runtime settings to allow http repositories

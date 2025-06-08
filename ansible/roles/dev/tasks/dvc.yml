@@ -1,0 +1,23 @@
+---
+- name: Install git associated packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - git
+
+- name: Configure git username globally
+  become: true
+  become_user: "{{ansible_user}}"
+  git_config:
+    name: user.name
+    scope: global
+    value: 'Nicolas Delsaux'
+
+- name: Configure git email globally
+  become: true
+  become_user: "{{ansible_user}}"
+  git_config:
+    name: user.email
+    scope: global
+    value: 'nicolas.delsaux@gmx.fr'

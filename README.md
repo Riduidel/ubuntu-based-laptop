@@ -19,9 +19,12 @@ Dans le dossier `ubuntu-based-server`, lancer la commande **dans PowerShell**
 
 Entrer le mot de passe maître de Keepass
 
-    ssh nicolas-delsaux@192.168.0.14
+    ssh nicolas-delsaux@192.168.1.157
     ansible-galaxy install -r requirements.yml
     ansible-playbook -i hosts bootstrap.yml --extra-vars="ansible_password=\"$SESSION_PASSWORD\" ansible_become_password=\"$SESSION_PASSWORD\" ansible_ssh_password=\"$SESSION_PASSWORD\"" --ask-vault-pass
+
+Le mot de passe vault est en fait inutile, mais sans ça Ansible demande un fichier vault qui n'existe pas.
+Donc quand ANsible le demande, tu peux taper n'importe quelle lettre.
 
 ## Lancer avec Linux
 
@@ -32,7 +35,7 @@ Dans le dossier `ubuntu-based-server`, lancer la commande **dans un terminal ext
 
 Entrer le mot de passe maître de Keepass
 
-    ssh nicolas-delsaux@192.168.0.14
+    mkdir /root/.ssh && ssh-keyscan -t ED25519 192.168.0.14 >> /root/.ssh/known_hosts
     ansible-galaxy install -r requirements.yml
     ansible-playbook -i hosts bootstrap.yml --ask-vault-pass --extra-vars="ansible_password=\"$SESSION_PASSWORD\" ansible_become_password=\"$SESSION_PASSWORD\" ansible_ssh_password=\"$SESSION_PASSWORD\""
 

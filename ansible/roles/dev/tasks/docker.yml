@@ -100,7 +100,7 @@
       #!/bin/sh
       docker run --rm -ti -v {{home_folder}}/.config/zspotify:/root/.zspotify -v {{home_folder}}/Musique:/root/Music jsavargas/zspotify
     mode: '0750'
-    dest: "{{local_bin_folder}}/structurizr-lite"
+    dest: "{{local_bin_folder}}/zspotify"
   become: true
   become_user: "{{ansible_user}}"
 

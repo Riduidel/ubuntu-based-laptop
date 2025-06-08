@@ -9,10 +9,14 @@
     - htop
     - bat
     - fzf
+    - curl
     - fonts-firacode
 
 - name: Install and configure git
   include_tasks: git.yml
+
+- name: Install and configure dvc
+  include_tasks: dvc.yml
 
 - name: Install Java dependencies
   include_tasks: java.yml
