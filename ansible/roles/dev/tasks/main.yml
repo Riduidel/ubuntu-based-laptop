@@ -24,6 +24,7 @@
 - name: Install Rust dependencies
   include_tasks: rust.yml
 
+# Do not forget to apply flatseal to provide access to Docker socket
 - name: Install Eclipse
   flatpak:
     name: org.eclipse.Java
