@@ -62,7 +62,8 @@
 #    volumes:
 #      - "{{home_folder}}/.open-webui:/app/backend/data"
 
-- copy:
+- name: Install ctop
+  copy:
     content: |
       #!/bin/sh
       docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro  quay.io/vektorlab/ctop:latest
@@ -71,7 +72,8 @@
   become: true
   become_user: "{{ansible_user}}"
 
-- copy:
+- name: Install TaskJuggler
+  copy:
     content: |
       #!/bin/sh
       docker run --name=taskjuggler --rm=true --net="none" -v ${PWD}:/tj3 treibholz/tj3:latest tj3 %*
@@ -80,7 +82,8 @@
   become: true
   become_user: "{{ansible_user}}"
 
-- copy:
+- name: Install Structurizr
+  copy:
     content: |
       #!/bin/sh
       docker run --rm --name structurizr-lite -d -p 18080:8080 -v ${PWD}:/usr/local/structurizr structurizr/lite
@@ -89,13 +92,15 @@
   become: true
   become_user: "{{ansible_user}}"
 
-- file:
+- name: Create Zspotify configuration file
+  file:
     path: "{{home_folder}}/.config/zspotify"
     state: directory
   become: true
   become_user: "{{ansible_user}}"
 
-- copy:
+- name: Install Zspotify command-line
+  copy:
     content: |
       #!/bin/sh
       docker run --rm -ti -v {{home_folder}}/.config/zspotify:/root/.zspotify -v {{home_folder}}/Musique:/root/Music jsavargas/zspotify
@@ -104,7 +109,8 @@
   become: true
   become_user: "{{ansible_user}}"
 
-- copy:
+- name: Install Ponysay
+  copy:
     content: |
       #!/bin/sh
       docker run -ti --rm mpepping/ponysay $@
