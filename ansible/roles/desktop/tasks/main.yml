@@ -27,6 +27,7 @@
     - nautilus-admin
     - xarchiver
  #   - pinta
+    - hardinfo
 
 #- name: Install machine-related dependencies
 #  include_tasks: dell.yml

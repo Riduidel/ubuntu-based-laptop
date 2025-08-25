@@ -1,11 +1,4 @@
 ---
-#- name: Install required packages
-#  apt:
-#    name: "{{ packages }}"
-#  vars:
-#    packages:
-#    - mariadb-server
-
 - name: Install AppImageLauncher
   include_tasks: app_image_launcher.yml
 
@@ -24,9 +17,9 @@
     owner: "{{ansible_user}}"
     url: "https://download.storage.infomaniak.com/drive/desktopclient/kDrive-{{kdrive_version}}-amd64.AppImage"
     dest: "{{download_folder}}"
-  when: kdrive_exists.matched == 0
+  when: kdrive_exists.matched == False
 
-- name: YOU have to use AppImageLauncher to "install" kDrive correctly
+- name: YOU have to use AppImageLauncher to "install" kDrive correctly (if Applications folder doesn't exist, launch AppImageLauncher)
   wait_for:
     path: "{{home_folder}}/Applications"
   when: kdrive_exists.matched == False

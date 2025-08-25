@@ -36,7 +36,7 @@
   become: true
   become_user: "{{ansible_user}}"
   lineinfile: 
-    path: "{{ home }}/.profile"
+    path: "{{ home_folder }}/.profile"
     line: "export EDITOR=nano"
     state: "present"
     create: "yes"

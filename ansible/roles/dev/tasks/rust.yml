@@ -28,7 +28,7 @@
   become: true
   become_user: "{{ansible_user}}"
   lineinfile: 
-    path: "{{ home }}/.bash_profile"
+    path: "{{ home_folder }}/.bash_profile"
     line: "[ -f ~/.cargo/env ] && source $HOME/.cargo/env"
     state: "present"
     create: "yes"
@@ -74,7 +74,7 @@
   become: true
   become_user: "{{ansible_user}}"
   lineinfile: 
-    path: "{{ home }}/.bash_profile"
+    path: "{{ home_folder }}/.bash_profile"
     line: "export BAT_THEME=\"Solarized (light)\""
     state: "present"
     create: "yes"
