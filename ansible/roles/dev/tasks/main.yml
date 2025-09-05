@@ -11,6 +11,7 @@
     - fzf
     - curl
     - fonts-firacode
+    - grc
 
 - name: Install and configure git
   include_tasks: git.yml
