@@ -28,6 +28,8 @@
     - xarchiver
  #   - pinta
     - hardinfo
+    - fonts-b612
+    - progress
 
 #- name: Install machine-related dependencies
 #  include_tasks: dell.yml
@@ -54,8 +56,8 @@
 #  include_tasks: chromium.yml
 
 # Guess what ? This crashes the Gnome control panel and tends to crash over time
-#- name: Install dynamic wallpapers
-#  include_tasks: dynamic_wallpapers.yml
+- name: Install dynamic wallpapers
+  include_tasks: dynamic_wallpapers.yml
 
 - name: Install Papyrus icons
   include_tasks: papirus.yml
@@ -67,5 +69,5 @@
   include_tasks: gnome_configuration.yml
 
 # I'm not good enough at linux bash to configure that the good way
-#- name: Install LinMuzei
-#  include_tasks: linmuzei.yml
+- name: Install LinMuzei
+  include_tasks: linmuzei.yml
