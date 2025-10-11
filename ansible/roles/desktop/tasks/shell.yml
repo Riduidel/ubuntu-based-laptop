@@ -1,0 +1,30 @@
+---
+- name: Install common Shell packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - starship
+
+- name: Make sure starship is in bashrc
+  lineinfile:
+    path: "{{home_folder}}/.bashrc"
+    line: eval "$(starship init bash)"
+
+- name: Install Nerd Fonts
+  ansible.builtin.include_role:
+    name: my_nerd_fonts_role
+  vars:
+    fonts_to_install:
+      - 0xProto
+      - FiraCode
+      - Hack
+      - Inconsolata
+      - Monofur
+
+- name: Copy starship configuration
+  template:
+    src: starship.toml
+    dest: "{{home_folder}}/.config/starship.toml"
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"

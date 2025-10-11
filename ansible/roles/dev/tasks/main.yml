@@ -10,7 +10,6 @@
     - bat
     - fzf
     - curl
-    - fonts-firacode
 
 - name: Install and configure git
   include_tasks: git.yml
