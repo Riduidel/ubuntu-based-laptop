@@ -30,6 +30,7 @@
     - hardinfo
     - fonts-b612
     - progress
+    - rclone
 
 #- name: Install machine-related dependencies
 #  include_tasks: dell.yml
