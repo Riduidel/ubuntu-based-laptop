@@ -1,5 +1,5 @@
 ---
-- name: Install easy packages
+- name: Install desktop packages
   apt:
     name: "{{ packages }}"
   vars:
@@ -34,6 +34,9 @@
 
 #- name: Install machine-related dependencies
 #  include_tasks: dell.yml
+
+- name: Install some shell niceties
+  include_tasks: shell.yml
 
 - name: Install python subsystem
   include_tasks: python.yml
@@ -70,5 +73,6 @@
   include_tasks: gnome_configuration.yml
 
 # I'm not good enough at linux bash to configure that the good way
-- name: Install LinMuzei
-  include_tasks: linmuzei.yml
+#- name: Install LinMuzei
+#  include_tasks: linmuzei.yml
+

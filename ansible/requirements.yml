@@ -8,3 +8,6 @@ roles:
 - src: https://github.com/luizgavalda/gnome_extensions
   scm: git
   version: 8b5fca0cec194e14d21a4c114290d643bd8c837e
+- src: https://github.com/LorenzoBettini/my_nerd_fonts_role
+  scm: git
+  version: 0e968e4c9d76e91d0b6e4f54759240610ec7d650

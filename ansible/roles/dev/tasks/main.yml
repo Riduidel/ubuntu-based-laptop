@@ -10,7 +10,6 @@
     - bat
     - fzf
     - curl
-    - fonts-firacode
     - grc
 
 - name: Install and configure git
