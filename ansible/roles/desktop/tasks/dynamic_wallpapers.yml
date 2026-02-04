@@ -1,4 +1,10 @@
 ---
+- name: Install LinMuzei required packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - git
 # Automate dynamic wallpapers install (but it never worked https://github.com/saint-13/Linux_Dynamic_Wallpapers)
 - name: Create dynamic wallpapers directory
   file:
@@ -13,6 +19,7 @@
   git:
     repo: https://github.com/saint-13/Linux_Dynamic_Wallpapers.git
     dest: "{{open_source_folder}}/Linux_Dynamic_Wallpapers"
+    depth: 1
 
 - name: Run install package
   become: true
