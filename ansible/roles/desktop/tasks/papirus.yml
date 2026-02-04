@@ -6,7 +6,7 @@
     name: Papirus
     state: present
     uris: https://ppa.launchpadcontent.net/papirus/papirus/ubuntu
-    suites: plucky
+    suites: "{{ansible_distribution_release}}"
     signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9461999446faf0df770bfc9ae58a9d36647cae7f
     components:
       - main

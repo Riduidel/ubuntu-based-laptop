@@ -1,11 +1,14 @@
 ---
+# Take care: if there is a /usr/bin/firefox executable, it has to be removed before running install
+# otherwise nothing will work
+
 # See https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04
 - name: Add Mozilla team PPA
   deb822_repository:
     name: Mozillateam
     state: present
     uris: https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/
-    suites: plucky
+    suites: "{{ansible_distribution_release}}"
     signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x738beb9321d1aaec13ea9391aebdf4819be21867
     components:
       - main
@@ -27,7 +30,7 @@
     # We prefer all packgaes from mozilla, hopping they do good
     content: |
       Package: firefox*
-      Pin: release o=Ubuntu
+      Pin: release o=Ubuntu*
       Pin-Priority: -1
   register: firefox_block
 

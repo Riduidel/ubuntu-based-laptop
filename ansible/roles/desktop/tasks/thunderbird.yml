@@ -4,7 +4,7 @@
     name: Mozillateam
     state: present
     uris: https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/
-    suites: plucky
+    suites: "{{ansible_distribution_release}}"
     signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x738beb9321d1aaec13ea9391aebdf4819be21867
     components:
       - main

@@ -4,7 +4,7 @@
     name: KeepassXC
     state: present
     uris: https://ppa.launchpadcontent.net/phoerious/keepassxc/ubuntu
-    suites: plucky
+    suites: "{{ansible_distribution_release}}"
     signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xd89c66d0e31fea2874ebd20561922ab60068fcd6
     components:
       - main
