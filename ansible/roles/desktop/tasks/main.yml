@@ -11,8 +11,6 @@
     - ca-certificates
     - flatpak
     - gnome-software-plugin-flatpak
-    # This clipboard manager seems to work quite well with Wayland
-    - diodon
     - tilix
     - shotwell
     - vlc
