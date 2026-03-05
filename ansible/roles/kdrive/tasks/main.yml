@@ -1,6 +1,4 @@
 ---
-- name: Install AppImageLauncher
-  include_tasks: app_image_launcher.yml
 
 # In fact the kdrive version is not even complete, there is some kind of a hash added
 # So do a lookup
@@ -19,8 +17,7 @@
     dest: "{{download_folder}}"
   when: kdrive_exists.matched == False
 
-- name: YOU have to use AppImageLauncher to "install" kDrive correctly (if Applications folder doesn't exist, launch AppImageLauncher)
-  wait_for:
-    path: "{{home_folder}}/Applications"
-  when: kdrive_exists.matched == False
-
+# This no more work. I'll have to replace it later
+- name: You remember AppImageLauncher prevent kdrive from working ?
+  fail:
+    msg: We now have to install kDrive in Applications folder. But AppImageLauncher no more works. How to do that?
