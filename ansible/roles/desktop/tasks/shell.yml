@@ -10,11 +10,13 @@
   lineinfile:
     path: "{{home_folder}}/.bashrc"
     line: eval "$(starship init bash)"
+    create: true
 
 - name: Make sure starship is in bash profile
   lineinfile:
     path: "{{home_folder}}/.bash_profile"
     line: eval "$(starship init bash)"
+    create: true
 
 - name: Install Nerd Fonts
   ansible.builtin.include_role:
