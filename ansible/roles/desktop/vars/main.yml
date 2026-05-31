@@ -6,3 +6,11 @@ dell_command_configure_version: 4.11.0-6
 dell_command_configure_name: "command-configure_{{dell_command_configure_version}}.ubuntu22_amd64"
 dell_command_configure_source: "https://dl.dell.com/FOLDER10469726M/1/{{dell_command_configure_name}}.tar.gz"
 dell_command_configure_temp_folder: "{{download_folder}}/dell_command_configure"
+
+gnoming_profiles_config:
+  github-repo: "ubuntu-gnoming-profiles"
+  github-username: "Riduidel"
+#  github-token: "{{ lookup('torie_coding.keepass.lookup', 'entry', database=keepass_db, database_password=keepass_password, title='github')}}"
+
+gnoming_profiles_schema_dir: "~/.local/share/gnome-shell/extensions/gnoming-profiles@gavindi.github.com/schemas"
+gnoming_profiles_schema: "org.gnome.shell.extensions.gnoming-profiles"

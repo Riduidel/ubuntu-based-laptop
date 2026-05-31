@@ -8,3 +8,6 @@ kdrive_folder: "{{home_folder}}/kDrive"
 local_folder: "{{home_folder}}/.local"
 local_bin_folder: "{{local_folder}}/bin"
 local_pip_folder: "{{local_folder}}/pip"
+
+keepass_db: "/keepass.kdbx"
+keepass_password: "{{ lookup('ansible.builtin.env', 'ANSIBLE_KEEPASS_PSW') }}"

@@ -20,6 +20,10 @@
     components:
       - main
 
+- name: Don't forget to update apt cache!
+  apt:
+    update_cache: true
+
 - name: Install editors
   apt:
     name: "{{ packages }}"

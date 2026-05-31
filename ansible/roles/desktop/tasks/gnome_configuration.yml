@@ -13,6 +13,11 @@
   become_user: "{{ansible_user}}"
   command: pipx install gnome-extensions-cli
 
+- name: Install pykeepass
+  ansible.builtin.pip: 
+    name: pykeepass
+  delegate_to: localhost 
+
 # Quite sure there is a better way to do that
 - name: Install Gnome extensions
   become: true
@@ -23,13 +28,24 @@
   with_items:
     - 3628 #arcmenu/
     - 1160 #dash-to-panel/
-    - 6096 #smile-complementary-extension/
     - 7065 #tiling-shell/
     - 4470 #media-controls/
     - 3843 #just-perfection/
     - 19 #user-themes/
     - 6784 # wiggle/
-    - 5724 # battery health charging
     - 6670 # bluetooth battery meter
     - 6922 # Gravatar
     - 8834 # Copyons
+    - 8671 # All in one clipboard
+    - 8323 # Gnoming profiles
+
+- name: Configure gnoming-profiles
+  become: true
+  become_user: "{{ansible_user}}"
+  command: "gsettings --schemadir {{gnoming_profiles_schema_dir}} set {{gnoming_profiles_schema}} {{ item.key }} {{ item.value }}"
+  loop: "{{ gnoming_profiles_config|dict2items }}"
+
+- name: Don't forget to set github token
+  debug:
+    msg: "gsettings --schemadir {{gnoming_profiles_schema_dir}} set {{gnoming_profiles_schema}} github-token $GITHUB_TOKEN"
+ 

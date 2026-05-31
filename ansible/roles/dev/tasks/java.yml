@@ -74,4 +74,4 @@
   args:
       executable: /bin/bash
 
-- name: Update maven runtime settings to allow http repositories
+#- name: Update maven runtime settings to allow http repositories

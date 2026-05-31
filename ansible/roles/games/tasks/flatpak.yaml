@@ -1,0 +1,26 @@
+---
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+
+- name: Install flatpak packages
+  flatpak:
+    name: "{{item}}"
+  with_items:
+    - info.beyondallreason.bar
+    - info.urbanterror.UrbanTerror
+    - com.github.Anuken.Mindustry
+    - com.valvesoftware.Steam
+    - org.diasurgical.DevilutionX
+    - tw.ddnet.ddnet
+    - net.veloren.veloren
+    - com.endlessnetwork.aqueducts
+# TODO: Set QT_QPA_PLATFORM=wayland for softwares failing to start
+
+- name: Install RVGL as Flatpak
+  flatpak:
+    name: RVGL
+    from_url: https://mickael9.gitlab.io/rvgl-flatpak/org.rvgl.rvmm.flatpakref

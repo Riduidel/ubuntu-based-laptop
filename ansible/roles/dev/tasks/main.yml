@@ -35,8 +35,8 @@
 - name: Install some editors
   include_tasks: editors.yml
 
-- name: Install Docker containers and other stuff
-  include_tasks: docker.yml
+#- name: Install Docker containers and other stuff
+#  include_tasks: docker.yml
 
 # - name: Finally clone some useful repositories
 #   include_tasks: clone_my_repositories.yml

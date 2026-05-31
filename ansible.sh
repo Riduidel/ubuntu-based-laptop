@@ -17,12 +17,12 @@ systemUser="${systemUser:-$defaultKeepass}"
 # Now read values from keepassxc database
 # keepassxc command-line is obviously slightly different
 
-sessionPassword=$(echo "$password" | keepassxc-cli show $keepass "Portable Dell" --show-protected --quiet --attributes "password")
+sessionPassword=$(echo "$password" | keepassxc-cli show $keepass "Portable perso" --show-protected --quiet --attributes "password")
 kdrivePassword=$(echo "$password" | keepassxc-cli show $keepass "Infomaniak" --show-protected --quiet --attributes "password")
 
 currentFolder=${PWD}
 # Finally start the docker image!
 # See https://stackoverflow.com/a/36648428 for the ssh socket madness
-docker="sudo docker run --rm --name ansible -t -i --mount type=bind,source=$SSH_AUTH_SOCK,target=/ssh-agent --env SSH_AUTH_SOCK=/ssh-agent -e SESSION_PASSWORD=\"$sessionPassword\" -e KDRIVE_PASSWORD=\"$kdrivePassword\" -v $currentFolder/ansible:/ansible:ro willhallonline/ansible:2.18-bookworm-slim /bin/bash"
+docker="sudo docker run --rm --name ansible-for-laptop --hostname ansible-for-laptop -t -i -e ANSIBLE_KEEPASS_PSW=\"$password\" --mount type=bind,source=$keepass,target=/keepass.kdbx --mount type=bind,source=$SSH_AUTH_SOCK,target=/ssh-agent --env SSH_AUTH_SOCK=/ssh-agent -e SESSION_PASSWORD=\"$sessionPassword\" -e KDRIVE_PASSWORD=\"$kdrivePassword\" -v $currentFolder/ansible:/ansible:ro willhallonline/ansible:2.18-bookworm-slim /bin/bash"
 
 bash -c "$docker"

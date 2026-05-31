@@ -19,6 +19,8 @@
     - it.mijorus.gearlever
     - com.xnview.XnViewMP
     - com.github.jmlich.geotagging
-    - com.collaboraoffice.Office
+    - info.beyondallreason.bar
+    - info.urbanterror.UrbanTerror
     - fr.handbrake.ghb
-# TODO: Set QT_QPA_PLATFORM=wayland for softwares failing to start
+    - com.github.Anuken.Mindustry
+    - com.valvesoftware.Steam
